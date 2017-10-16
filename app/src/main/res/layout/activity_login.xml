@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="24dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="24dp"
+    tools:context="com.direv.direv.MainActivity">
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/editTextEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/emailicon"
+            android:drawablePadding="8dp"
+            android:background="@drawable/userinfo"
+            android:layout_margin="16dp"
+            android:inputType="textEmailAddress"
+            android:hint="Email" />
+
+        <EditText
+            android:id="@+id/editTextPasswordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/passwordicon2"
+            android:drawablePadding="8dp"
+            android:background="@drawable/userinfo"
+            android:layout_margin="16dp"
+            android:inputType="textPassword"
+            android:hint="Password" />
+
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:text="Log In" />
+
+        <TextView
+            android:textColor="#0000EE"
+            android:layout_margin="24dp"
+            android:textAlignment="center"
+            android:text="@string/forgot_link"
+            android:id="@+id/textViewSignin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/buttonFacebookLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:background="@drawable/facebookbutton"
+            android:paddingLeft="72dp"
+            android:paddingRight="72dp"
+            android:text="Log In with Facebook"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/buttongotoSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+
+            android:background="@drawable/mybutton"
+            android:paddingLeft="72dp"
+            android:paddingRight="72dp"
+            android:text="Sign Up"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</RelativeLayout>

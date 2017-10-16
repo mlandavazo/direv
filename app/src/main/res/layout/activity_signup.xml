@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="24dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="24dp"
+    tools:context="com.direv.direv.MainActivity">
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/editTextFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/personicon"
+            android:drawablePadding="8dp"
+            android:background="@drawable/userinfo"
+            android:layout_margin="8dp"
+            android:inputType="textPersonName"
+            android:hint="First Name" />
+
+        <EditText
+            android:id="@+id/editTextLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/personicon"
+            android:drawablePadding="8dp"
+            android:background="@drawable/userinfo"
+            android:layout_margin="8dp"
+            android:inputType="textPersonName"
+            android:hint="Last Name" />
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/usernameicon"
+            android:drawablePadding="8dp"
+            android:background="@drawable/userinfo"
+            android:layout_margin="8dp"
+            android:inputType="textPersonName"
+            android:hint="Username" />
+
+        <EditText
+            android:id="@+id/editTextEmailSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/emailicon"
+            android:drawablePadding="8dp"
+            android:background="@drawable/userinfo"
+            android:layout_margin="8dp"
+            android:inputType="textEmailAddress"
+            android:hint="Password" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/passwordicon2"
+            android:drawablePadding="8dp"
+            android:background="@drawable/userinfo"
+            android:layout_margin="8dp"
+            android:inputType="textPassword"
+            android:hint="Password" />
+
+        <EditText
+            android:id="@+id/editTextPasswordConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/passwordicon2"
+            android:drawablePadding="8dp"
+            android:background="@drawable/userinfo"
+            android:layout_margin="8dp"
+            android:inputType="textPassword"
+            android:hint="Confirm Password" />
+
+        <CheckBox
+            android:layout_marginBottom="8dp"
+            android:id="@+id/TermscheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/terms"
+            android:textColor="#0000EE"/>
+
+        <Button
+            android:id="@+id/buttonSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:paddingLeft="72dp"
+            android:paddingRight="72dp"
+            android:text="Sign Up "
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</RelativeLayout>

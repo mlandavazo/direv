@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Direv</string>
+    <string name="forgot_link"><u>Forgot Account/Password?</u></string>
+    <string name="terms"><u>I agree with the terms</u></string>
 </resources>
