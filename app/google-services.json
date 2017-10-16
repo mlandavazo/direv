@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "69959465662",
+    "firebase_url": "https://direv-30293.firebaseio.com",
+    "project_id": "direv-30293",
+    "storage_bucket": "direv-30293.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69959465662:android:993ffb3f5a426750",
+        "android_client_info": {
+          "package_name": "com.direv.direv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69959465662-abap8qfo26tjlg9g6omiam2usl0fbv3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7JqbTGhoVi517xJXV1JoslkCWvZ5TmRE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
