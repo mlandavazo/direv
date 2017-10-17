@@ -74,7 +74,7 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/buttongotoSignUp"
+            android:id="@+id/buttonNewAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -83,7 +83,7 @@
             android:background="@drawable/mybutton"
             android:paddingLeft="72dp"
             android:paddingRight="72dp"
-            android:text="Sign Up"
+            android:text="Create new account"
             android:textColor="#FFFFFF"
             android:textAllCaps="false" />
     </LinearLayout>

@@ -2,18 +2,14 @@ package com.direv.direv;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -43,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_home);
+/*
         firebaseAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(this);
@@ -58,8 +54,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonRegister.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
-    }
+*/
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(new MainTabsAdapter(getSupportFragmentManager(),
+                MainActivity.this));
 
+        // Give the TabLayout the ViewPager
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        int[] imageResId = {
+                R.drawable.homeicon,
+                R.drawable.feedicon,
+                R.drawable.cameraicon,
+                R.drawable.usernameicon,
+                R.drawable.settingsicon};
+
+        for (int i = 0; i < imageResId.length; i++) {
+            tabLayout.getTabAt(i).setIcon(imageResId[i]);
+        }
+    }
+/*
     private void registerUser() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -101,15 +117,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
     }
-
+*/
     @Override
     public void onClick(View view) {
+        /*
         if(view == buttonRegister) {
             registerUser();
         }
 
         if(view == textViewSignin){
             // Will open login activity here
-        }
+        }*/
     }
+
 }
