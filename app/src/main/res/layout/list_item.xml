@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/listprofilepic"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:src ="@drawable/personicon" />
+
+    <TextView
+        android:id="@+id/listprofilename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OP"
+        android:textSize="12sp"
+        android:layout_toRightOf="@+id/listprofilepic"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/listrestaurantname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="McDonald's"
+        android:textSize="12sp"
+        android:layout_toRightOf="@+id/listprofilepic"
+        android:layout_below="@+id/listprofilename"
+        android:layout_marginLeft="12dp"/>
+    <TextView
+        android:id="@+id/listtimeposted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2m ago"
+        android:textSize="12sp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@+id/listprofilename"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:id="@+id/listreviewpicture"
+        android:layout_width="240dp"
+        android:layout_height="160dp"
+        android:src ="@drawable/bigmac"
+        android:layout_below="@id/listtimeposted"
+        android:layout_toRightOf="@id/listprofilepic"
+        android:layout_marginLeft="12dp"/>
+
+    <ImageView
+        android:id="@+id/listheart"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src ="@drawable/heartoff"
+        android:layout_below="@id/listreviewpicture"
+        android:layout_toRightOf="@id/listprofilepic"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/listnumberoflikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="52 likes"
+        android:textSize="12sp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@+id/listreviewpicture"
+        android:layout_toRightOf="@id/listheart"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/listcomments"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src ="@drawable/listcomments"
+        android:layout_below="@id/listreviewpicture"
+        android:layout_toRightOf="@id/listnumberoflikes"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/listnumberofcomments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12 comments"
+        android:textSize="12sp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@+id/listreviewpicture"
+        android:layout_toRightOf="@id/listcomments"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/listratingbackground"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src ="@drawable/listratingbackground"
+        android:layout_below="@id/listreviewpicture"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/listitemrating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3.4"
+        android:textSize="12sp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/listreviewpicture"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"/>
+</RelativeLayout>
+

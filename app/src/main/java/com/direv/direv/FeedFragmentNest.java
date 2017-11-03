@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -16,18 +17,18 @@ import java.util.ArrayList;
 // In this case, the fragment displays simple text based on the page
 
 
-public class FeedFragment extends Fragment {
+public class FeedFragmentNest extends Fragment {
 
     private FragmentTabHost mTabHost;
 
-    public FeedFragment() {
+    public FeedFragmentNest() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       // View view = inflater.inflate(R.layout.listactivity_feed, container, false);
+        View view = inflater.inflate(R.layout.listactivity_feed, container, false);
 
         mTabHost = new FragmentTabHost(getActivity());
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.layout.activity_main2);
@@ -48,16 +49,16 @@ public class FeedFragment extends Fragment {
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the
         // word_list.xml layout file.
-        //ListView listView = (ListView) view.findViewById(R.id.listview);
+        ListView listView = (ListView) view.findViewById(R.id.listview);
 
         // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
         // {@link ListView} will display list items for each {@link Word} in the list.
-        //listView.setAdapter(adapter);
+        listView.setAdapter(adapter);
 
         //TextView viewMapText = (TextView) rootView.findViewById(R.id.viewmap_text);
         // viewMapText.setOnClickListener(RoutesFragment.this);
 
-        return mTabHost;
+        return view;
     }
 }
 
