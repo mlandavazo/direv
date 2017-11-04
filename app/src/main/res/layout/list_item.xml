@@ -25,7 +25,7 @@
         android:id="@+id/listrestaurantname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="McDonald's"
+        android:text="@string/restaurant_name"
         android:textSize="12sp"
         android:layout_toRightOf="@+id/listprofilepic"
         android:layout_below="@+id/listprofilename"
@@ -114,7 +114,18 @@
         android:layout_below="@+id/listreviewpicture"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/listitemcommenttext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The food was great!"
+        android:textSize="12sp"
+        android:layout_below="@+id/listheart"
+        android:layout_toRightOf="@id/listprofilepic"
+        android:layout_marginLeft="12dp"
         android:layout_marginBottom="8dp"/>
+
 </RelativeLayout>
 

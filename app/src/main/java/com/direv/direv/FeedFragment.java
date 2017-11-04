@@ -27,7 +27,7 @@ public class FeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       // View view = inflater.inflate(R.layout.listactivity_feed, container, false);
+       //View view = inflater.inflate(R.layout.listactivity_feed, container, false);
 
         mTabHost = new FragmentTabHost(getActivity());
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.layout.activity_main2);
@@ -43,12 +43,15 @@ public class FeedFragment extends Fragment {
             feedItems.add(new FeedItem());
         }
 
-        FeedItemAdapter adapter = new FeedItemAdapter(getActivity(), feedItems);
 
+        //FeedItemAdapter adapter = new FeedItemAdapter(getActivity(), feedItems);
+
+
+        //viewRestaurant.setOnClickListener(FeedFragment.this);
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the
         // word_list.xml layout file.
-        //ListView listView = (ListView) view.findViewById(R.id.listview);
+       // ListView listView = (ListView) view.findViewById(R.id.listview);
 
         // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
         // {@link ListView} will display list items for each {@link Word} in the list.
@@ -59,5 +62,6 @@ public class FeedFragment extends Fragment {
 
         return mTabHost;
     }
+
 }
 

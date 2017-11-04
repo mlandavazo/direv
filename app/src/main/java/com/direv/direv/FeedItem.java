@@ -27,6 +27,8 @@ public class FeedItem {
 
     private int reviewscore = R.id.listitemrating;
 
+    private int reviewtext = R.id.listitemcommenttext;
+
     FeedItem(){
 
     }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textBusinessTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Business Hours"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/textBusinessHours"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Mon-Sun 8am-11pm"
+        android:layout_marginTop="8dp"
+        android:textSize="12sp"
+        android:layout_below="@id/textBusinessTitle"/>
+
+    <TextView
+        android:id="@+id/textPhoneTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Phone Number"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:layout_below="@id/textBusinessHours"/>
+
+    <TextView
+        android:id="@+id/textPhoneNumber"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="209-999-9999"
+        android:layout_marginTop="8dp"
+        android:textSize="12sp"
+        android:layout_below="@id/textPhoneTitle"/>
+
+</RelativeLayout>

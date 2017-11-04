@@ -66,6 +66,8 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
         TextView rating= (TextView) listItemView.findViewById(R.id.listitemrating);
 
+        TextView reviewText = (TextView) listItemView.findViewById(R.id.listitemcommenttext);
+
         return listItemView;
     }
 }

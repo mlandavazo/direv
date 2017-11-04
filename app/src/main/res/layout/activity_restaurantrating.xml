@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textFoodTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Food"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:layout_marginTop="16dp"/>
+    <RatingBar
+        android:id="@+id/FoodRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:numStars="5"
+        android:rating="4"/>
+
+    <TextView
+        android:id="@+id/textServiceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <RatingBar
+        android:id="@+id/ServiceRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:numStars="5"
+        android:rating="4"/>
+
+    <TextView
+        android:id="@+id/textCleanlinessTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cleanliness"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <RatingBar
+        android:id="@+id/CleanlinessRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:numStars="5"
+        android:rating="4"/>
+</LinearLayout>
