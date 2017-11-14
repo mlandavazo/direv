@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeicon"
+        android:icon="@drawable/homeicon"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/feedicon"
+        android:icon="@drawable/feedicon"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/cameraicon"
+        android:icon="@drawable/cameraicon"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/usernameicon"
+        android:icon="@drawable/usernameicon"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/settingsicon"
+        android:icon="@drawable/settingsicon"
+        android:title="">
+    </item>
+
+</menu>

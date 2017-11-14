@@ -30,13 +30,6 @@ public class FeedFragmentNest extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listactivity_feed, container, false);
 
-        mTabHost = new FragmentTabHost(getActivity());
-        mTabHost.setup(getActivity(), getChildFragmentManager(), R.layout.activity_main2);
-
-        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Friends"),
-                FeedFragmentNest.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("Nearby"),
-                FeedFragmentNest.class, null);
 
         final ArrayList<FeedItem> feedItems = new ArrayList<FeedItem>();
 
@@ -62,7 +55,7 @@ public class FeedFragmentNest extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                RestaurantFragment nextFrag= new RestaurantFragment();
+                RestaurantActivity nextFrag= new RestaurantActivity();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.listview, nextFrag,"findThisFragment")
                         .addToBackStack(null)

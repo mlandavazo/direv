@@ -1,22 +1,60 @@
 package com.direv.direv;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTabHost;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
-import java.util.ArrayList;
+import com.direv.direv.Utils.BottomNavigationViewHelper;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 /**
  * Created by Malachi on 11/3/2017.
  */
 
-public class RestaurantFragment extends Fragment {
+public class RestaurantActivity extends AppCompatActivity {
+    private Context mContext = RestaurantActivity.this;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_restaurant);
+
+        setupBottomNavigationView();
+        setupViewPager();
+
+    }
+
+    private void setupViewPager(){
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new RestaurantFragmentReviews());
+        adapter.addFragment(new RestaurantFragmentInfo());
+        adapter.addFragment(new RestaurantFragmentRating());
+        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager.setAdapter(adapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setText("REVIEWS");
+        tabLayout.getTabAt(1).setText("INFO");
+        tabLayout.getTabAt(2).setText("RATING");
+
+
+    }
+
+    private void setupBottomNavigationView(){
+        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
+        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mContext,bottomNavigationViewEx);
+
+    }
+}
+/*
+public class RestaurantActivity extends Fragment {
     private FragmentTabHost mTabHost;
 
-    public RestaurantFragment() {
+    public RestaurantActivity() {
 
     }
 
@@ -58,3 +96,4 @@ public class RestaurantFragment extends Fragment {
         return mTabHost;
     }
 }
+*/
