@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/editTextEmailLogin"
+            android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/emailicon"
@@ -26,10 +26,10 @@
             android:background="@drawable/userinfo"
             android:layout_margin="16dp"
             android:inputType="textEmailAddress"
-            android:hint="Email" />
+            android:hint="Username" />
 
         <EditText
-            android:id="@+id/editTextPasswordLogin"
+            android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/passwordicon2"
