@@ -11,17 +11,13 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 /**
- * Created by Malachi on 10/16/2017.
+ * Created by Malachi on 11/18/2017.
  */
 
-// In this case, the fragment displays simple text based on the page
-
-
-public class FeedFragmentNest extends Fragment {
-
+public class FeedNearbyFragment extends Fragment {
     private FragmentTabHost mTabHost;
 
-    public FeedFragmentNest() {
+    public FeedNearbyFragment() {
 
     }
 
@@ -66,4 +62,3 @@ public class FeedFragmentNest extends Fragment {
         return view;
     }
 }
-

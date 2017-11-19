@@ -34,6 +34,8 @@ public class ProfileActivity extends FragmentActivity {
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
     }
+
+
 }
 // In this case, the fragment displays simple text based on the page
     /*

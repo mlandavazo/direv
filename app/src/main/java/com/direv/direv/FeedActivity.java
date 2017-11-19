@@ -31,8 +31,8 @@ public class FeedActivity extends FragmentActivity {
 
     private void setupViewPager(){
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FeedFragmentNest());
-        adapter.addFragment(new FeedFragmentNest());
+        adapter.addFragment(new FeedFriendsFragment());
+        adapter.addFragment(new FeedNearbyFragment());
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(adapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -50,6 +50,7 @@ public class FeedActivity extends FragmentActivity {
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
     }
+
 }
 // In this case, the fragment displays simple text based on the page
 
