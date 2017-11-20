@@ -67,7 +67,8 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private Context mContext = HomeActivity.this;
     private static final int ACTIVITY_NUM = 0;
     private static final String TAG = "HomeActivity";
-
+    Object dTransfer[] = new Object[2];
+    String link;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +123,13 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
             mMap.setMyLocationEnabled(true);
         }
     }
+  /*  public void getLoc(){
+        GetNearbyPlacesData gb = new GetNearbyPlacesData();
+        dTransfer[0] = mMap;
+        dTransfer[1] = link;
+        DataParser dp = new DataParser();
 
+    }*/
 
     protected synchronized void bulidGoogleApiClient() {
         client = new GoogleApiClient.Builder(this).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
@@ -238,7 +245,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         googlePlaceUrl.append("&sensor=true");
         googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
 
-        //Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+        Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
         return googlePlaceUrl.toString();
     }
