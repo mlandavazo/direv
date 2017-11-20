@@ -59,7 +59,7 @@
             android:background="@drawable/userinfo"
             android:layout_margin="8dp"
             android:inputType="textEmailAddress"
-            android:hint="Password" />
+            android:hint="Email" />
 
         <EditText
             android:id="@+id/editTextPassword"

@@ -9,6 +9,7 @@
         android:layout_height="32dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
         android:src ="@drawable/personicon" />
 
     <TextView
@@ -47,7 +48,10 @@
         android:src ="@drawable/bigmac"
         android:layout_below="@id/listtimeposted"
         android:layout_toRightOf="@id/listprofilepic"
-        android:layout_marginLeft="12dp"/>
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"/>
 
     <ImageView
         android:id="@+id/listheart"
@@ -114,7 +118,7 @@
         android:layout_below="@+id/listreviewpicture"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="3dp"/>
 
     <TextView
         android:id="@+id/listitemcommenttext"
