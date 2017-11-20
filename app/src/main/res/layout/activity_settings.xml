@@ -1,43 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/changepassicon"
-            android:layout_width="wrap_content"
+        <!-- top toolbar -->
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/passwordicon2"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="116dp"/>
+            android:id="@+id/relLayout1">
 
-        <TextView
-            android:id="@+id/changepasstext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Change Password"
-            android:layout_toRightOf="@id/changepassicon"
-            android:layout_marginTop="16dp"/>
+                <include layout="@layout/layout_top_tabs"/>
 
-        <ImageView
-            android:id="@+id/logouticon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logouticon"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="120dp"
-            android:layout_below="@id/changepassicon"/>
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/logouttext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log Out"
-            android:layout_toRightOf="@id/logouticon"
-            android:layout_below="@id/changepassicon"
-            android:layout_marginTop="24dp"
-            android:layout_marginLeft="4dp"/>
+        <!-- content -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/relLayout2"
+            android:layout_below="@+id/relLayout1">
 
+                <ImageView
+                    android:id="@+id/changepassicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/passwordicon2"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="116dp"/>
+
+                <TextView
+                    android:id="@+id/changepasstext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change Password"
+                    android:layout_toRightOf="@id/changepassicon"
+                    android:layout_marginTop="16dp"/>
+
+                <ImageView
+                    android:id="@+id/logouticon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logouticon"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="120dp"
+                    android:layout_below="@id/changepassicon"/>
+
+                <TextView
+                    android:id="@+id/logouttext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Log Out"
+                    android:layout_toRightOf="@id/logouticon"
+                    android:layout_below="@id/changepassicon"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="4dp"/>
+
+        </RelativeLayout>
+
+        <!-- bottom tabs -->
+        <include layout="@layout/layout_bottom_navigation_view"/>
 
 </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout >

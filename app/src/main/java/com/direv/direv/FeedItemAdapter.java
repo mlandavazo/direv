@@ -20,53 +20,51 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
     }
 
+static class ViewHolder{
+    ImageView profilePicture, reviewPicture, heart, comment, ratingBackground;
+    TextView profileName, restaurantName, timePosted, numComments, numLikes, rating, reviewText;
 
+}
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if an existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
+        final ViewHolder holder;
+
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
+            holder = new ViewHolder();
+            FeedItem currentFeedItem = getItem(position);
+            holder.profileName = (TextView) listItemView.findViewById(R.id.listprofilename);
+            holder.profilePicture = (ImageView) listItemView.findViewById(R.id.listprofilepic);
+            holder.profilePicture.setImageResource(currentFeedItem.getProfilePic());
+            holder.restaurantName= (TextView) listItemView.findViewById(R.id.listrestaurantname);
+            holder.reviewPicture = (ImageView) listItemView.findViewById(R.id.listreviewpicture);
+            holder.reviewPicture.setImageResource(currentFeedItem.getReviewPicture());
+            holder.timePosted = (TextView) listItemView.findViewById(R.id.listtimeposted);
+            holder.heart = (ImageView) listItemView.findViewById(R.id.listheart);
+            holder.heart.setImageResource(currentFeedItem.getHeartPic());
+            holder.comment = (ImageView) listItemView.findViewById(R.id.listcomments);
+            holder.comment.setImageResource(currentFeedItem.getCommentPic());
+            holder.ratingBackground = (ImageView) listItemView.findViewById(R.id.listratingbackground);
+            holder.ratingBackground.setImageResource(currentFeedItem.getRatingBackground());
+            holder.numComments= (TextView) listItemView.findViewById(R.id.listnumberofcomments);
+            holder.numLikes= (TextView) listItemView.findViewById(R.id.listnumberoflikes);
+            holder.rating= (TextView) listItemView.findViewById(R.id.listitemrating);
+            holder.reviewText = (TextView) listItemView.findViewById(R.id.listitemcommenttext);
+
+            holder.restaurantName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                   // Intent intent = new Intent(context, RestaurantActivity.class);
+                   // context.startActivity(intent);
+
+                }
+            });
         }
 
-        // Get the {@link Word} object located at this position in the list
-        FeedItem currentFeedItem = getItem(position);
-
-        // Find the TextView in the list_item.xml layout with the ID miwok_text_view.
-        TextView profileName = (TextView) listItemView.findViewById(R.id.listprofilename);
-        //bikeType.setText(currentRouteCard.getBikeText());
-
-        // Find the ImageView in the list_item.xml layout with the ID image.
-        ImageView profilePicture = (ImageView) listItemView.findViewById(R.id.listprofilepic);
-        // Check if an image is provided for this word or no
-        profilePicture.setImageResource(currentFeedItem.getProfilePic());
-
-        TextView restaurantName= (TextView) listItemView.findViewById(R.id.listrestaurantname);
-        // difficulty.setText(currentRouteCard.getDifficultyText());
-
-        ImageView reviewPicture = (ImageView) listItemView.findViewById(R.id.listreviewpicture);
-        reviewPicture.setImageResource(currentFeedItem.getReviewPicture());
-
-        TextView timePosted = (TextView) listItemView.findViewById(R.id.listtimeposted);
-        //rating_text.setText(currentRouteCard.getRatingText());
-
-        ImageView heart = (ImageView) listItemView.findViewById(R.id.listheart);
-        heart.setImageResource(currentFeedItem.getHeartPic());
-
-        ImageView comment = (ImageView) listItemView.findViewById(R.id.listcomments);
-        comment.setImageResource(currentFeedItem.getCommentPic());
-
-        ImageView ratingBackground = (ImageView) listItemView.findViewById(R.id.listratingbackground);
-        ratingBackground.setImageResource(currentFeedItem.getRatingBackground());
-
-        TextView numComments= (TextView) listItemView.findViewById(R.id.listnumberofcomments);
-
-        TextView numLikes= (TextView) listItemView.findViewById(R.id.listnumberoflikes);
-
-        TextView rating= (TextView) listItemView.findViewById(R.id.listitemrating);
-
-        TextView reviewText = (TextView) listItemView.findViewById(R.id.listitemcommenttext);
 
         return listItemView;
     }

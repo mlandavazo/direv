@@ -11,17 +11,13 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 /**
- * Created by Malachi on 10/16/2017.
+ * Created by Malachi on 11/18/2017.
  */
 
-// In this case, the fragment displays simple text based on the page
-
-
-public class FeedFragmentNest extends Fragment {
-
+public class FeedFriendsFragment extends Fragment {
     private FragmentTabHost mTabHost;
 
-    public FeedFragmentNest() {
+    public FeedFriendsFragment() {
 
     }
 
@@ -30,13 +26,6 @@ public class FeedFragmentNest extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listactivity_feed, container, false);
 
-        mTabHost = new FragmentTabHost(getActivity());
-        mTabHost.setup(getActivity(), getChildFragmentManager(), R.layout.activity_main2);
-
-        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Friends"),
-                FeedFragmentNest.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("Nearby"),
-                FeedFragmentNest.class, null);
 
         final ArrayList<FeedItem> feedItems = new ArrayList<FeedItem>();
 
@@ -62,7 +51,7 @@ public class FeedFragmentNest extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                RestaurantFragment nextFrag= new RestaurantFragment();
+                RestaurantActivity nextFrag= new RestaurantActivity();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.listview, nextFrag,"findThisFragment")
                         .addToBackStack(null)
@@ -73,4 +62,3 @@ public class FeedFragmentNest extends Fragment {
         return view;
     }
 }
-

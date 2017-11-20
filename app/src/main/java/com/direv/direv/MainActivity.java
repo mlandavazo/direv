@@ -18,15 +18,15 @@ public class MainActivity extends FragmentActivity {
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
         mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("",getResources().getDrawable(R.drawable.homeicon)),
-                HomeFragment.class, null);
+                HomeActivity.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("",getResources().getDrawable(R.drawable.feedicon)),
-                FeedFragment.class, null);
+                FeedActivity.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("tab3").setIndicator("",getResources().getDrawable(R.drawable.cameraicon)),
-                CameraFragment.class, null);
+                CameraActivity.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("tab4").setIndicator("",getResources().getDrawable(R.drawable.usernameicon)),
-                ProfileFragment.class, null);
+                ProfileActivity.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("tab5").setIndicator("",getResources().getDrawable(R.drawable.settingsicon)),
-                SettingsFragment.class, null);
+                SettingsActivity.class, null);
     }
 
 }

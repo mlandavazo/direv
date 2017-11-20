@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "69959465662",
-    "firebase_url": "https://direv-30293.firebaseio.com",
-    "project_id": "direv-30293",
-    "storage_bucket": "direv-30293.appspot.com"
+    "project_number": "258662567539",
+    "firebase_url": "https://direv-b7b34.firebaseio.com",
+    "project_id": "direv-b7b34",
+    "storage_bucket": "direv-b7b34.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:69959465662:android:993ffb3f5a426750",
+        "mobilesdk_app_id": "1:258662567539:android:993ffb3f5a426750",
         "android_client_info": {
           "package_name": "com.direv.direv"
         }
       },
       "oauth_client": [
         {
-          "client_id": "69959465662-abap8qfo26tjlg9g6omiam2usl0fbv3n.apps.googleusercontent.com",
+          "client_id": "258662567539-ars842k96bf800ivelr5ronhu42o92un.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.direv.direv",
+            "certificate_hash": "a4fae6a41b5b1ecc9f5b6f700eee7396fe176f94"
+          }
+        },
+        {
+          "client_id": "258662567539-4nk1b3dnrrtfu6v9bp3586re11jupl4f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD7JqbTGhoVi517xJXV1JoslkCWvZ5TmRE"
+          "current_key": "AIzaSyDIebfiKLc0LAV30HB6GI72acU_yerXkBU"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258662567539-4nk1b3dnrrtfu6v9bp3586re11jupl4f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

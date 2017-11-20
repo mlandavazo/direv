@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.direv.direv">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permisson.READ_GSERVICES"/>
     
     <application
         android:allowBackup="true"
@@ -12,7 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
+<<<<<<< HEAD
         <activity android:name=".RegisterActivity">
+=======
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC61TiLYF7IvoIE5oBQeT0k1CTgTBNmfTU"/>
+        <activity android:name=".HomeActivity">
+>>>>>>> 559aa2a6b602ade856fd1d762ee5353076d29fd6
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,8 +32,16 @@
             </intent-filter>
         </activity>
 
+<<<<<<< HEAD
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".MainActivity"></activity>
+=======
+        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".FeedActivity"></activity>
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".RestaurantActivity"></activity>
+>>>>>>> 559aa2a6b602ade856fd1d762ee5353076d29fd6
     </application>
 
 </manifest>
