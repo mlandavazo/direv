@@ -18,14 +18,14 @@ public class Photo implements Parcelable {
     private String user_id;
     private List<Like> likes;
     private List<Comment> comments;
-
+    double foodRating,serviceRating,cleanRating;
 
     public Photo() {
 
     }
 
     public Photo(String caption, String date_created, String image_path, String photo_id,
-                 String user_id, String tags, List<Like> likes, List<Comment> comments) {
+                 String user_id, String tags, List<Like> likes, List<Comment> comments, double foodRating, double serviceRating, double cleanRating) {
         this.caption = caption;
         this.date_created = date_created;
         this.image_path = image_path;
@@ -33,6 +33,10 @@ public class Photo implements Parcelable {
         this.user_id = user_id;
         this.likes = likes;
         this.comments = comments;
+        this.foodRating = foodRating;
+        this.cleanRating = cleanRating;
+        this.serviceRating = serviceRating;
+
     }
 
     protected Photo(Parcel in) {
@@ -129,6 +133,18 @@ public class Photo implements Parcelable {
         this.likes = likes;
     }
 
+    public void setFoodRating(double foodRating){ this.foodRating=foodRating;}
+
+    public double getFoodRating() { return foodRating;}
+
+    public void setCleanRating(double cleanRating){ this.cleanRating=cleanRating;}
+
+    public double getCleanRating() { return cleanRating;}
+
+    public void setServiceRating(double serviceRating){ this.serviceRating=serviceRating;}
+
+    public double getServiceRating() { return serviceRating;}
+
     @Override
     public String toString() {
         return "Photo{" +
@@ -138,6 +154,9 @@ public class Photo implements Parcelable {
                 ", photo_id='" + photo_id + '\'' +
                 ", user_id='" + user_id + '\'' +
                 ", likes=" + likes +
+                ", serviceRating=" + serviceRating +
+                ", foodRating=" + foodRating +
+                ",cleanRating=" + cleanRating +
                 '}';
     }
 }

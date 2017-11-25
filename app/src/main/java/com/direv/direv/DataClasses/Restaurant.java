@@ -18,13 +18,14 @@ public class Restaurant extends Location{
 
     String address;
     String name;
-    double foodRating,serviceRating,cleanRating;
-    List<Photo> Reviews;
+
+    List<Photo> reviews;
+    //Photo photo;
     private Location location;
 public Restaurant(){
 
 }
-public Restaurant(JSONObject googlePlaceJson) {
+public Restaurant(JSONObject googlePlaceJson,Photo photo) {
   //  HashMap<String, String> googlePlaceMap = new HashMap<>();
     String placeName = "--NA--";
     String vicinity = "--NA--";
@@ -41,6 +42,7 @@ public Restaurant(JSONObject googlePlaceJson) {
 
         this.address = vicinity;
         this.name = placeName;
+        addPhoto(photo);
 
     } catch (JSONException e) {
         e.printStackTrace();
@@ -54,5 +56,36 @@ public Restaurant(JSONObject googlePlaceJson) {
     public String getName() { return name;  }
 
     public void setName(String name) {this.name = name; }
-}
+    public List<Photo> getPhoto(){return reviews;}
+    public void addPhoto(Photo photo){this.reviews.add(photo);}
+
+    public double RatingAverage(List<Photo> reviews, String type){
+        int reviewsize = reviews.size();
+        double avgClean = 0;
+        double avgFood = 0;
+        double avgService = 0;
+        if(type == "clean") {
+            for (int i = 0; i < reviewsize; i++) {
+
+                avgClean += reviews.get(i).cleanRating;
+            }
+            return avgClean/reviewsize;
+        }
+           else if(type =="food") {
+                for (int i = 0; i < reviewsize; i++) {
+                    avgFood += reviews.get(i).foodRating;
+                }
+                return avgFood/reviewsize;
+            }
+            else {
+                for (int i = 0; i < reviewsize; i++) {
+                    avgService += reviews.get(i).serviceRating;
+                }
+                return avgService/reviewsize;
+            }
+
+        }
+
+    }
+
 
