@@ -1,11 +1,8 @@
 package com.direv.direv.DataClasses;
 
-import com.direv.direv.DataParser;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -13,14 +10,16 @@ import java.util.List;
  */
 
 public class Restaurant extends Location{
-    double hours;
-    Long phones;
+    long hours;
+    long phones;
 
     String address;
     String name;
-    double foodRating,serviceRating,cleanRating;
+    long foodRating,serviceRating,cleanRating;
     List<Photo> Reviews;
     private Location location;
+
+
 public Restaurant(){
 
 }
