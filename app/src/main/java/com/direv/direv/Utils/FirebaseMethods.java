@@ -184,7 +184,7 @@ public class FirebaseMethods {
     private void addPhotoToDatabase(String caption, String url){
         Log.d(TAG, "addPhotoToDatabase: adding photo to database.");
 
-        String tags = StringManipulation.getTags(caption);
+
         String newPhotoKey = myRef.child(mContext.getString(R.string.dbname_photos)).push().getKey();
         Photo photo = new Photo();
         photo.setCaption(caption);
@@ -268,7 +268,7 @@ public class FirebaseMethods {
 //            user.setUsername(ds.getValue(User.class).getUsername());
 //            Log.d(TAG, "checkIfUsernameExists: username: " + user.getUsername());
 //
-//            if(StringManipulation.expandUsername(user.getUsername()).equals(username)){
+//            if(user.getUsername().equals(username){
 //                Log.d(TAG, "checkIfUsernameExists: FOUND A MATCH: " + user.getUsername());
 //                return true;
 //            }

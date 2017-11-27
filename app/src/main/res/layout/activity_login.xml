@@ -17,6 +17,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/camerashuttericon"
+        android:id="@+id/direvicon"
+        android:layout_toLeftOf="@+id/apptitle"
+        android:layout_toStartOf="@+id/apptitle"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:id="@+id/apptitle"
+        android:layout_marginLeft="4dp"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
         <EditText
             android:id="@+id/editTextEmailLogin"
             android:layout_width="match_parent"

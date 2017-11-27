@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(mContext, "Passwords do not match.", Toast.LENGTH_SHORT).show();
                     }
                 }
-                else{
+                else if (!mCheckBox.isChecked()){
                     Toast.makeText(mContext, "You must agree to the terms.", Toast.LENGTH_SHORT).show();
                 }
             }
