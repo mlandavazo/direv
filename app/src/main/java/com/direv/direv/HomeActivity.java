@@ -218,9 +218,20 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
 
             case R.id.B_restaurants: //send search  of restaurants into get URL
 
+            mMap.clear();
+            String restaurant = "restaurant";
+            String url = getUrl(latitude, longitude, restaurant);
+            dataTransfer[0] = mMap;
+            dataTransfer[1] = url;
+
+            getNearbyPlacesData.execute(dataTransfer);
+            //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
+            break;
+            case R.id.B_bar: //send search  of bars into get URL
+
                 mMap.clear();
-                String restaurant = "restaurant";
-                String url = getUrl(latitude, longitude, restaurant);
+                String bar = "bar";
+                 url = getUrl(latitude, longitude, bar);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
 
