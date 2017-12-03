@@ -66,6 +66,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private GoogleApiClient client;
     private LocationRequest locationRequest;
     private Location lastlocation;
+    public Location HomeLocation;
     private Marker currentLocationmMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
     int PROXIMITY_RADIUS = 10000;
@@ -107,7 +108,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                     {
                         if(client == null)
                         {
-                            bulidGoogleApiClient();
+                            buildGoogleApiClient();
                         }
                         mMap.setMyLocationEnabled(true);
                     }
@@ -128,7 +129,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         mMap = googleMap;
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            bulidGoogleApiClient();
+            buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
     }
@@ -140,7 +141,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
 
     }*/
 
-    protected synchronized void bulidGoogleApiClient() {
+    protected synchronized void buildGoogleApiClient() {
         client = new GoogleApiClient.Builder(this).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
         client.connect();
 
@@ -151,6 +152,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
 
         latitude = location.getLatitude();
         longitude = location.getLongitude();
+
         lastlocation = location;
         if(currentLocationmMarker != null)
         {
@@ -201,6 +203,8 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                             for(int i = 0;i<addressList.size();i++)
                             {
                                 LatLng latLng = new LatLng(addressList.get(i).getLatitude() , addressList.get(i).getLongitude());
+                                latitude = addressList.get(i).getLatitude();
+                                longitude = addressList.get(i).getLongitude();
                                 MarkerOptions markerOptions = new MarkerOptions();
                                 markerOptions.position(latLng);
                                 markerOptions.title(location);
@@ -250,6 +254,9 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                 //Toast.makeText(HomeFragment.this, "Showing Nearby Cafes", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.B_to:
+                Toast.makeText(HomeActivity.this, "Showing our location", Toast.LENGTH_SHORT).show();
+                latitude=lastlocation.getLatitude();
+                longitude = lastlocation.getLongitude();
         }
 
     }
