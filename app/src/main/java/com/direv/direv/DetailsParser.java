@@ -10,51 +10,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Created by Malachi on 12/2/2017.
+ */
 
-public class DataParser {
-
+public class DetailsParser {
     private HashMap<String, String> getPlace(JSONObject googlePlaceJson)
     {
         HashMap<String, String> googlePlaceMap = new HashMap<>();
-        String placeName = "--NA--";
-        String address= "--NA--";
-        String latitude= "";
-        String longitude="";
-        String reference="";
-        String id = "";
-        String placeID = "";
+        String phone = "";
 
-        Log.d("DataParser","jsonobject ="+googlePlaceJson.toString());
+
+        Log.d("DetailsParser","jsonobject ="+googlePlaceJson.toString());
 
 
         try {
-            if (!googlePlaceJson.isNull("name")) {
-                placeName = googlePlaceJson.getString("name");
+            if (!googlePlaceJson.isNull("formatted_phone_number")) {
+                phone = googlePlaceJson.getString("formatted_phone_number");
             }
 
-            if (!googlePlaceJson.isNull("vicinity")) {
-                address = googlePlaceJson.getString("vicinity");
-            }
-
-            if (!googlePlaceJson.isNull("id")) {
-                id = googlePlaceJson.getString("id");
-            }
-
-            if (!googlePlaceJson.isNull("place_id")) {
-                placeID = googlePlaceJson.getString("place_id");
-            }
-            latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
-            longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
-
-            reference = googlePlaceJson.getString("reference");
-
-            googlePlaceMap.put("place_name", placeName);
-            googlePlaceMap.put("vicinity", address);
-            googlePlaceMap.put("lat", latitude);
-            googlePlaceMap.put("lng", longitude);
-            googlePlaceMap.put("reference", reference);
-            googlePlaceMap.put("id", id);
-            googlePlaceMap.put("place_id", placeID);
+            googlePlaceMap.put("formatted_phone_number", phone);
 
 
         }

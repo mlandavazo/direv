@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.direv.direv.Utils.BottomNavigationViewHelper;
+import com.direv.direv.Utils.FirebaseMethods;
 import com.direv.direv.Utils.UniversalImageLoader;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -38,6 +39,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -61,6 +64,9 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseMethods firebaseMethods;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
 
     private GoogleMap mMap;
     private GoogleApiClient client;
@@ -75,12 +81,15 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private static final String TAG = "HomeActivity";
     Object dTransfer[] = new Object[2];
     String link;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Log.d(TAG,"OnCreate : starting");
-
+        mContext = HomeActivity.this;
+        firebaseMethods = new FirebaseMethods(mContext);
         setupFirebaseAuth();
         initImageLoader();
         setupBottomNavigationView();
@@ -175,9 +184,8 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
 
     public void onClick(View v)
     {
-        Object dataTransfer[] = new Object[2];
+        Object dataTransfer[] = new Object[3];
         GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
-
 
         switch(v.getId()) //This switch method checks which button is being pressed and then calls
         // the appropriate methods for the action
@@ -223,6 +231,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                 String url = getUrl(latitude, longitude, restaurant);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
+                dataTransfer[2] = mContext;
 
                 getNearbyPlacesData.execute(dataTransfer);
                 //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
@@ -234,12 +243,17 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                 url = getUrl(latitude, longitude, cafe);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
+                dataTransfer[2] = mContext;
 
                 getNearbyPlacesData.execute(dataTransfer);
-                //Toast.makeText(HomeFragment.this, "Showing Nearby Cafes", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.B_to:
         }
+
+    }
+
+    private void getLocations() {
 
     }
 
@@ -255,6 +269,17 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+
+        return googlePlaceUrl.toString();
+    }
+    private String getPlaceDetailsUrl(String placeID) // Use GooglePlaces API functions to find URL
+    {
+
+        StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/details/json?placeid=");
+        googlePlaceUrl.append(placeID);
+        googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
+
+        Log.d("getPlaceDetailsURl", "url = "+googlePlaceUrl.toString());
 
         return googlePlaceUrl.toString();
     }
@@ -312,7 +337,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private void setupBottomNavigationView(){
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext,bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mContext, this, bottomNavigationViewEx);
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);

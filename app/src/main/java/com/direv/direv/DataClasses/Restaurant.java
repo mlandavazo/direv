@@ -1,63 +1,59 @@
 package com.direv.direv.DataClasses;
 
-import com.direv.direv.DataParser;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by Malachi on 11/19/2017.
  */
 
-public class Restaurant extends Location{
+public class Restaurant {
     double hours;
-    Long phones;
-
-    String address;
-    String name;
-
+    String phone;
+    Location location;
     List<Photo> reviews;
-    //Photo photo;
-    private Location location;
-public Restaurant(){
-
-}
-public Restaurant(JSONObject googlePlaceJson,Photo photo) {
-  //  HashMap<String, String> googlePlaceMap = new HashMap<>();
-    String placeName = "--NA--";
-    String vicinity = "--NA--";
-    //String reference = "";
-
-    try {
-        if (!googlePlaceJson.isNull("name")) {
-            placeName = googlePlaceJson.getString("name");
-        }
-        if (!googlePlaceJson.isNull("vicinity")) {
-            vicinity = googlePlaceJson.getString("vicinity");
-        }
 
 
-        this.address = vicinity;
-        this.name = placeName;
-        addPhoto(photo);
+    public Restaurant(){
 
-    } catch (JSONException e) {
-        e.printStackTrace();
     }
-}
 
+    public Restaurant(Location location) {
+        this.location = location;
+        this.hours = 0.0;
+        this.phone = "555-5555";
+    }
 
-    public String getAddress() { return address;  }
+    public double getHours() {
+        return hours;
+    }
 
-    public void setAddress(String add) {this.address = add; }
-    public String getName() { return name;  }
+    public void setHours(double hours) {
+        this.hours = hours;
+    }
 
-    public void setName(String name) {this.name = name; }
-    public List<Photo> getPhoto(){return reviews;}
-    public void addPhoto(Photo photo){this.reviews.add(photo);}
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public List<Photo> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Photo> reviews) {
+        this.reviews = reviews;
+    }
 
     public double RatingAverage(List<Photo> reviews, String type){
         int reviewsize = reviews.size();
@@ -71,21 +67,21 @@ public Restaurant(JSONObject googlePlaceJson,Photo photo) {
             }
             return avgClean/reviewsize;
         }
-           else if(type =="food") {
-                for (int i = 0; i < reviewsize; i++) {
-                    avgFood += reviews.get(i).foodRating;
-                }
-                return avgFood/reviewsize;
+        else if(type =="food") {
+            for (int i = 0; i < reviewsize; i++) {
+                avgFood += reviews.get(i).foodRating;
             }
-            else {
-                for (int i = 0; i < reviewsize; i++) {
-                    avgService += reviews.get(i).serviceRating;
-                }
-                return avgService/reviewsize;
+            return avgFood/reviewsize;
+        }
+        else {
+            for (int i = 0; i < reviewsize; i++) {
+                avgService += reviews.get(i).serviceRating;
             }
-
+            return avgService/reviewsize;
         }
 
     }
+
+}
 
 
