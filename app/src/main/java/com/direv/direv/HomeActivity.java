@@ -21,6 +21,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.Places;
 import com.direv.direv.Utils.BottomNavigationViewHelper;
 import com.direv.direv.Utils.FirebaseMethods;
 import com.direv.direv.Utils.UniversalImageLoader;
@@ -226,8 +228,17 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                     }
                 }
                 break;
+            case R.id.B_search2:    //search for specific places
+                mMap.clear();
+                EditText tf_location2 =  findViewById(R.id.TF_location2);
+                String location2 = tf_location2.getText().toString();
+                String url2 = getUrl2(latitude, longitude, location2);
+                dataTransfer[0] = mMap;
+                dataTransfer[1] = url2;
+                dataTransfer[2]=mContext;
+                getNearbyPlacesData.execute(dataTransfer);
 
-
+break;
             case R.id.B_restaurants: //send search  of restaurants into get URL
 
             mMap.clear();
@@ -236,6 +247,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
             dataTransfer[0] = mMap;
             dataTransfer[1] = url;
             dataTransfer[2] = mContext;
+
 
             getNearbyPlacesData.execute(dataTransfer);
             //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
@@ -290,6 +302,20 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
         return googlePlaceUrl.toString();
+    }
+    private String getUrl2(double latitude , double longitude , String nearbyPlace) // Use GooglePlaces API functions to find URL
+    {
+
+        StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json?");
+        googlePlaceUrl.append("query="+nearbyPlace);
+        googlePlaceUrl.append("location="+latitude+","+longitude);
+        googlePlaceUrl.append("&radius="+"100");
+        googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
+
+        Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+
+        //return googlePlaceUrl.toString();
+       return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
     }
     private String getPlaceDetailsUrl(String placeID) // Use GooglePlaces API functions to find URL
     {
