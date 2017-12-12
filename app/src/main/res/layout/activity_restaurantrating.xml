@@ -17,7 +17,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:numStars="5"
-        android:rating="4"/>
+        android:rating="4."
+        android:theme="@style/RatingBar"
+        android:isIndicator="true"
+        android:stepSize="0.5"/>
 
     <TextView
         android:id="@+id/textServiceTitle"
@@ -26,7 +29,7 @@
         android:text="Service"
         android:layout_gravity="center"
         android:textSize="16dp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
     <RatingBar
         android:id="@+id/ServiceRating"
@@ -34,7 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:numStars="5"
-        android:rating="4"/>
+        android:rating="4"
+        android:theme="@style/RatingBar"
+        android:isIndicator="true"
+        android:stepSize="0.5"/>
 
     <TextView
         android:id="@+id/textCleanlinessTitle"
@@ -51,5 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:numStars="5"
-        android:rating="4"/>
+        android:rating="4"
+        android:theme="@style/RatingBar"
+        android:isIndicator="true"
+        android:stepSize="0.5"/>
 </LinearLayout>

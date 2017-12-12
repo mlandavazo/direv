@@ -18,14 +18,18 @@ public class Photo implements Parcelable {
     private String user_id;
     private List<Like> likes;
     private List<Comment> comments;
-    double foodRating,serviceRating,cleanRating;
+    double food_rating,service_rating,clean_rating;
+    private String restaurant_name;
+    private String restaurant_key;
 
     public Photo() {
 
     }
 
     public Photo(String caption, String date_created, String image_path, String photo_id,
-                 String user_id, String tags, List<Like> likes, List<Comment> comments, double foodRating, double serviceRating, double cleanRating) {
+                 String user_id, String tags, List<Like> likes, List<Comment> comments,
+                 double foodRating, double serviceRating, double cleanRating,
+                 String restaurantName, String restaurant_key) {
         this.caption = caption;
         this.date_created = date_created;
         this.image_path = image_path;
@@ -33,9 +37,11 @@ public class Photo implements Parcelable {
         this.user_id = user_id;
         this.likes = likes;
         this.comments = comments;
-        this.foodRating = foodRating;
-        this.cleanRating = cleanRating;
-        this.serviceRating = serviceRating;
+        this.food_rating = foodRating;
+        this.clean_rating = cleanRating;
+        this.service_rating = serviceRating;
+        this.restaurant_name = restaurantName;
+        this.restaurant_key = restaurant_key;
 
     }
 
@@ -45,6 +51,11 @@ public class Photo implements Parcelable {
         image_path = in.readString();
         photo_id = in.readString();
         user_id = in.readString();
+        food_rating = in.readDouble();
+        service_rating = in.readDouble();
+        clean_rating = in.readDouble();
+        restaurant_name = in.readString();
+        restaurant_key = in.readString();
     }
 
     @Override
@@ -54,6 +65,11 @@ public class Photo implements Parcelable {
         dest.writeString(image_path);
         dest.writeString(photo_id);
         dest.writeString(user_id);
+        dest.writeDouble(food_rating);
+        dest.writeDouble(clean_rating);
+        dest.writeDouble(service_rating);
+        dest.writeString(restaurant_name);
+        dest.writeString(restaurant_key);
     }
 
     @Override
@@ -133,17 +149,61 @@ public class Photo implements Parcelable {
         this.likes = likes;
     }
 
-    public void setFoodRating(double foodRating){ this.foodRating=foodRating;}
+    public double getFood_rating() {
+        return food_rating;
+    }
 
-    public double getFoodRating() { return foodRating;}
+    public void setFood_rating(double food_rating) {
+        this.food_rating = food_rating;
+    }
 
-    public void setCleanRating(double cleanRating){ this.cleanRating=cleanRating;}
+    public double getService_rating() {
+        return service_rating;
+    }
 
-    public double getCleanRating() { return cleanRating;}
+    public void setService_rating(double service_rating) {
+        this.service_rating = service_rating;
+    }
 
-    public void setServiceRating(double serviceRating){ this.serviceRating=serviceRating;}
+    public double getClean_rating() {
+        return clean_rating;
+    }
 
-    public double getServiceRating() { return serviceRating;}
+    public void setClean_rating(double clean_rating) {
+        this.clean_rating = clean_rating;
+    }
+
+    public String getRestaurant_name() {
+        return restaurant_name;
+    }
+
+    public void setRestaurant_name(String restaurant_name) {
+        this.restaurant_name = restaurant_name;
+    }
+
+    public String getRestaurant_key() {
+        return restaurant_key;
+    }
+
+    public void setRestaurant_key(String restaurant_key) {
+        this.restaurant_key = restaurant_key;
+    }
+
+    public double getOverallRating() {
+        double overall = (service_rating + clean_rating + food_rating) / 3;
+        if((overall % 1) > 0 && (overall % 1) < 0.25){
+            return (overall - (overall % 1));
+        }
+        else if ((overall % 1) > 0.25 && (overall % 1) < 0.5){
+            return (overall + (0.5 - (overall % 1)));
+        }
+        else if ((overall % 1) > 0.5){
+            return (overall + (1 - (overall % 1)));
+        }
+        else{
+            return overall;
+        }
+    }
 
     @Override
     public String toString() {
@@ -154,9 +214,12 @@ public class Photo implements Parcelable {
                 ", photo_id='" + photo_id + '\'' +
                 ", user_id='" + user_id + '\'' +
                 ", likes=" + likes +
-                ", serviceRating=" + serviceRating +
-                ", foodRating=" + foodRating +
-                ",cleanRating=" + cleanRating +
+                ", comments=" + comments +
+                ", food_rating=" + food_rating +
+                ", service_rating=" + service_rating +
+                ", clean_rating=" + clean_rating +
+                ", restaurant_name='" + restaurant_name + '\'' +
+                ", restaurant_key='" + restaurant_key + '\'' +
                 '}';
     }
 }

@@ -235,6 +235,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
             String url = getUrl(latitude, longitude, restaurant);
             dataTransfer[0] = mMap;
             dataTransfer[1] = url;
+            dataTransfer[2] = mContext;
 
             getNearbyPlacesData.execute(dataTransfer);
             //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
@@ -419,5 +420,13 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    public double getMyLatitude(){
+        return latitude;
+    }
+
+    public double getMyLongitude(){
+        return longitude;
     }
 }

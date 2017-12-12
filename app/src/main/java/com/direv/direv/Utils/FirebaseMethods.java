@@ -22,6 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 /**
  * Created by Malachi on 11/24/2017.
  */
@@ -382,6 +387,7 @@ public class FirebaseMethods {
 
         String newRestaurantKey = myRef.child(mContext.getString(R.string.dbname_restaurants)).push().getKey();
         Restaurant restaurant = new Restaurant(location);
+        restaurant.setKey(newRestaurantKey);
         myRef.child(mContext.getString(R.string.dbname_restaurants))
                 .child(newRestaurantKey)
                 .setValue(restaurant);
@@ -395,6 +401,12 @@ public class FirebaseMethods {
         myRef.child(mContext.getString(R.string.dbname_restaurants))
                 .child(newRestaurantKey)
                 .setValue(restaurant);
+    }
+
+    public String getTimestamp(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.CANADA);
+        sdf.setTimeZone(TimeZone.getTimeZone("Canada/Pacific"));
+        return sdf.format(new Date());
     }
 
     /**

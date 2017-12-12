@@ -11,7 +11,7 @@ public class Restaurant {
     String phone;
     Location location;
     List<Photo> reviews;
-
+    String key;
 
     public Restaurant(){
 
@@ -21,6 +21,15 @@ public class Restaurant {
         this.location = location;
         this.hours = 0.0;
         this.phone = "555-5555";
+
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public double getHours() {
@@ -55,32 +64,7 @@ public class Restaurant {
         this.reviews = reviews;
     }
 
-    public double RatingAverage(List<Photo> reviews, String type){
-        int reviewsize = reviews.size();
-        double avgClean = 0;
-        double avgFood = 0;
-        double avgService = 0;
-        if(type == "clean") {
-            for (int i = 0; i < reviewsize; i++) {
 
-                avgClean += reviews.get(i).cleanRating;
-            }
-            return avgClean/reviewsize;
-        }
-        else if(type =="food") {
-            for (int i = 0; i < reviewsize; i++) {
-                avgFood += reviews.get(i).foodRating;
-            }
-            return avgFood/reviewsize;
-        }
-        else {
-            for (int i = 0; i < reviewsize; i++) {
-                avgService += reviews.get(i).serviceRating;
-            }
-            return avgService/reviewsize;
-        }
-
-    }
 
 }
 

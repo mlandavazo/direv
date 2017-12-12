@@ -140,7 +140,8 @@ class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
 
     private void checkIfLocationExists(final String id, final String name, final String address, final String placeID, final String lat, final String lon) {
         Log.d(TAG, "checkIfLocationExists: Checking if  " + id + " already exists.");
-
+        String test = mFirebaseMethods.getTimestamp();
+        Log.d(TAG, "test: " + test);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference
                 .child("locations")
