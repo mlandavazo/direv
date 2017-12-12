@@ -8,15 +8,14 @@
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@drawable/grey_orange_bottom_border">
 
             <android.support.design.widget.TabLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tabs"
-                android:background="@drawable/grey_white_bottom_border"
-                app:tabSelectedTextColor ="@color/colorPrimary"
-                app:tabIndicatorColor="@color/colorPrimary">
+                app:tabSelectedTextColor ="@color/black"
+                app:tabIndicatorColor="@color/black">
 
             </android.support.design.widget.TabLayout>
 

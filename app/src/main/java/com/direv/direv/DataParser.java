@@ -26,9 +26,9 @@ public class DataParser {
 
 
         try {
-            if (!googlePlaceJson.isNull("name")) {
-                placeName = googlePlaceJson.getString("name");
-            }
+                if (!googlePlaceJson.isNull("name")) {
+                    placeName = googlePlaceJson.getString("name");
+                }
             if (!googlePlaceJson.isNull("vicinity")) {
                 vicinity = googlePlaceJson.getString("vicinity");
             }
@@ -51,7 +51,7 @@ public class DataParser {
         }
         return googlePlaceMap;
 
-    }
+    }//test comment
     private List<HashMap<String, String>> getPlaces(JSONArray jsonArray)
     {
         int count = jsonArray.length();

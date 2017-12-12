@@ -14,7 +14,7 @@ android:layout_height="match_parent">
             android:layout_height="wrap_content"
             android:id="@+id/relLayout1">
 
-                <include layout="@layout/layout_top_tabs"/>
+                <include layout="@layout/snippet_top_settingsbar"/>
 
         </RelativeLayout>
 
@@ -64,6 +64,23 @@ android:layout_height="match_parent">
 
         <!-- bottom tabs -->
         <include layout="@layout/layout_bottom_navigation_view"/>
+        <ProgressBar
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/progressBar"
+            android:layout_centerInParent="true"
+            android:indeterminateDrawable="@drawable/progressbar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logging out..."
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_below="@+id/progressBar"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="-8dp"
+            android:id="@+id/tvLoggingOut"/>
 
 </RelativeLayout>
 

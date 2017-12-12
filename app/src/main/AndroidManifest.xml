@@ -27,12 +27,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".CameraActivity"></activity>
         <activity android:name=".FeedActivity"></activity>
         <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".RestaurantActivity"></activity>
+        <activity android:name=".AccountSettingsActivity"></activity>
     </application>
 
 </manifest>

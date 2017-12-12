@@ -1,94 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-
-<EditText
-android:id="@+id/TF_location"
-android:layout_width="290dp"
-android:layout_height="45dp"
-android:ems="10"
-android:inputType="textPersonName"
-android:text="Name"
-
-android:layout_alignParentStart="true"
-android:layout_marginTop="10dp"
-    android:layout_alignParentLeft="true" />
-
-<Button
-android:id="@+id/B_search"
-android:layout_width="100dp"
-android:layout_height="45dp"
-
-
-android:onClick="onClick"
-android:text="Search"
-    android:layout_alignTop="@+id/TF_location"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true" />
-
-
-
-
-<Button
-android:id="@+id/B_cafe"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_alignParentStart="true"
-android:layout_below="@+id/TF_location"
-android:onClick="onClick"
-android:text="Cafe"
-    android:layout_alignParentLeft="true" />
-
-
-
-<Button
-android:id="@+id/B_restaurants"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_below="@+id/TF_location"
-android:layout_toEndOf="@+id/B_cafe"
-android:onClick="onClick"
-android:text="Restaurants" />
-
-<Button
-android:id="@+id/B_to"
-android:layout_width="1dp"
-android:layout_height="1dp"
-android:layout_alignBottom="@+id/B_restaurants"
-android:layout_toEndOf="@+id/B_restaurants"
-android:onClick="onClick"
-android:text="To" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/map"
-        android:layout_below="@+id/B_cafe"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Featured Restaurants"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-</RelativeLayout>
-=======
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -104,7 +14,7 @@ android:text="To" />
             android:layout_height="wrap_content"
             android:id="@+id/relLayout1">
 
-            <include layout="@layout/layout_top_tabs"/>
+            <include layout="@layout/snippet_top_homebar"/>
 
         </RelativeLayout>
 
@@ -125,6 +35,7 @@ android:text="To" />
                 android:text="Name"
                 android:layout_below="@+id/B_search"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_marginTop="10dp" />
 
             <Button
@@ -133,6 +44,7 @@ android:text="To" />
                 android:layout_height="45dp"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/TF_location"
+                android:layout_toRightOf="@+id/TF_location"
                 android:onClick="onClick"
                 android:text="Search" />
 
@@ -148,6 +60,7 @@ android:text="To" />
 
                 android:layout_below="@+id/B_cafe"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_marginTop="37dp" />
 
             <Button
@@ -155,6 +68,7 @@ android:text="To" />
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_below="@+id/TF_location"
                 android:onClick="onClick"
                 android:text="Cafe" />
@@ -167,6 +81,7 @@ android:text="To" />
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/TF_location"
                 android:layout_toEndOf="@+id/B_cafe"
+                android:layout_toRightOf="@+id/B_cafe"
                 android:onClick="onClick"
                 android:text="Restaurants" />
 
@@ -176,6 +91,7 @@ android:text="To" />
                 android:layout_height="1dp"
                 android:layout_alignBottom="@+id/B_restaurants"
                 android:layout_toEndOf="@+id/B_restaurants"
+                android:layout_toRightOf="@+id/B_restaurants"
                 android:onClick="onClick"
                 android:text="To" />
 
@@ -187,4 +103,3 @@ android:text="To" />
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout >
->>>>>>> 559aa2a6b602ade856fd1d762ee5353076d29fd6

@@ -7,6 +7,9 @@ import android.os.Parcelable;
  * credit for class goes to: https://github.com/mitchtabian/Android-Instagram-Clone
  */
 
+/**
+ * may have to alt+insert getters and setters and tostring if there are errors
+ */
 public class User implements Parcelable {
 
     private String firstname;
@@ -81,7 +84,7 @@ public class User implements Parcelable {
     }
 
     public String getLastname() {
-        return username;
+        return lastname;
     }
 
     public void setLastname(String lastname) {

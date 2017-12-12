@@ -2,6 +2,7 @@ package com.direv.direv;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -35,6 +36,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -55,6 +58,9 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
+    //firebase
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     private GoogleMap mMap;
     private GoogleApiClient client;
@@ -67,14 +73,18 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private Context mContext = HomeActivity.this;
     private static final int ACTIVITY_NUM = 0;
     private static final String TAG = "HomeActivity";
-
+    Object dTransfer[] = new Object[2];
+    String link;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+
         Log.d(TAG,"OnCreate : starting");
+        setContentView(R.layout.activity_home);
+        setupFirebaseAuth();
         initImageLoader();
         setupBottomNavigationView();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
 
@@ -86,6 +96,8 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
 
 
     }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch(requestCode)
@@ -122,7 +134,13 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
             mMap.setMyLocationEnabled(true);
         }
     }
+  /*  public void getLoc(){
+        GetNearbyPlacesData gb = new GetNearbyPlacesData();
+        dTransfer[0] = mMap;
+        dTransfer[1] = link;
+        DataParser dp = new DataParser();
 
+    }*/
 
     protected synchronized void bulidGoogleApiClient() {
         client = new GoogleApiClient.Builder(this).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
@@ -238,7 +256,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         googlePlaceUrl.append("&sensor=true");
         googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
 
-        //Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+        Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
         return googlePlaceUrl.toString();
     }
@@ -300,5 +318,65 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
+    }
+
+     /*
+    ------------------------------------ Firebase ---------------------------------------------
+     */
+
+    /**
+     * checks to see if the @param 'user' is logged in
+     * @param user
+     */
+    private void checkCurrentUser(FirebaseUser user){
+        Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
+
+        if(user == null){
+            Intent intent = new Intent(mContext, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+    /**
+     * Setup the firebase auth object
+     */
+    private void setupFirebaseAuth(){
+        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                //check if the user is logged in
+                checkCurrentUser(user);
+
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+        //mViewPager.setCurrentItem(HOME_FRAGMENT);
+        checkCurrentUser(mAuth.getCurrentUser());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }
