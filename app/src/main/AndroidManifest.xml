@@ -29,10 +29,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".MainActivity"></activity>
 
+=======
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+>>>>>>> 7693056296c94ad410f00363a0552d87ebc8b1be
         <activity android:name=".CameraActivity"></activity>
         <activity android:name=".FeedActivity"></activity>
         <activity android:name=".ProfileActivity"></activity>

@@ -2,6 +2,7 @@ package com.direv.direv;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -20,7 +21,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.Places;
 import com.direv.direv.Utils.BottomNavigationViewHelper;
+import com.direv.direv.Utils.FirebaseMethods;
 import com.direv.direv.Utils.UniversalImageLoader;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -35,6 +39,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -55,11 +63,18 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
+    //firebase
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseMethods firebaseMethods;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
 
     private GoogleMap mMap;
     private GoogleApiClient client;
     private LocationRequest locationRequest;
     private Location lastlocation;
+    public Location HomeLocation;
     private Marker currentLocationmMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
     int PROXIMITY_RADIUS = 10000;
@@ -67,14 +82,21 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private Context mContext = HomeActivity.this;
     private static final int ACTIVITY_NUM = 0;
     private static final String TAG = "HomeActivity";
+    Object dTransfer[] = new Object[2];
+    String link;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Log.d(TAG,"OnCreate : starting");
+        mContext = HomeActivity.this;
+        firebaseMethods = new FirebaseMethods(mContext);
+        setupFirebaseAuth();
         initImageLoader();
         setupBottomNavigationView();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
 
@@ -97,7 +119,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                     {
                         if(client == null)
                         {
-                            bulidGoogleApiClient();
+                            buildGoogleApiClient();
                         }
                         mMap.setMyLocationEnabled(true);
                     }
@@ -118,13 +140,19 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         mMap = googleMap;
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            bulidGoogleApiClient();
+            buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
     }
+  /*  public void getLoc(){
+        GetNearbyPlacesData gb = new GetNearbyPlacesData();
+        dTransfer[0] = mMap;
+        dTransfer[1] = link;
+        DataParser dp = new DataParser();
 
+    }*/
 
-    protected synchronized void bulidGoogleApiClient() {
+    protected synchronized void buildGoogleApiClient() {
         client = new GoogleApiClient.Builder(this).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
         client.connect();
 
@@ -135,6 +163,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
 
         latitude = location.getLatitude();
         longitude = location.getLongitude();
+
         lastlocation = location;
         if(currentLocationmMarker != null)
         {
@@ -159,9 +188,8 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
 
     public void onClick(View v)
     {
-        Object dataTransfer[] = new Object[2];
+        Object dataTransfer[] = new Object[3];
         GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
-
 
         switch(v.getId()) //This switch method checks which button is being pressed and then calls
         // the appropriate methods for the action
@@ -185,6 +213,8 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                             for(int i = 0;i<addressList.size();i++)
                             {
                                 LatLng latLng = new LatLng(addressList.get(i).getLatitude() , addressList.get(i).getLongitude());
+                                latitude = addressList.get(i).getLatitude();
+                                longitude = addressList.get(i).getLongitude();
                                 MarkerOptions markerOptions = new MarkerOptions();
                                 markerOptions.position(latLng);
                                 markerOptions.title(location);
@@ -198,15 +228,38 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                     }
                 }
                 break;
+            case R.id.B_search2:    //search for specific places
+                mMap.clear();
+                EditText tf_location2 =  findViewById(R.id.TF_location2);
+                String location2 = tf_location2.getText().toString();
+                String url2 = getUrl2(latitude, longitude, location2);
+                dataTransfer[0] = mMap;
+                dataTransfer[1] = url2;
+                dataTransfer[2]=mContext;
+                getNearbyPlacesData.execute(dataTransfer);
 
-
+break;
             case R.id.B_restaurants: //send search  of restaurants into get URL
 
+            mMap.clear();
+            String restaurant = "restaurant";
+            String url = getUrl(latitude, longitude, restaurant);
+            dataTransfer[0] = mMap;
+            dataTransfer[1] = url;
+            dataTransfer[2] = mContext;
+
+
+            getNearbyPlacesData.execute(dataTransfer);
+            //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
+            break;
+            case R.id.B_bar: //send search  of bars into get URL
+
                 mMap.clear();
-                String restaurant = "restaurant";
-                String url = getUrl(latitude, longitude, restaurant);
+                String bar = "bar";
+                 url = getUrl(latitude, longitude, bar);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
+                dataTransfer[2] = mContext;
 
                 getNearbyPlacesData.execute(dataTransfer);
                 //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
@@ -218,12 +271,20 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                 url = getUrl(latitude, longitude, cafe);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
+                dataTransfer[2] = mContext;
 
                 getNearbyPlacesData.execute(dataTransfer);
-                //Toast.makeText(HomeFragment.this, "Showing Nearby Cafes", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.B_to:
+                Toast.makeText(HomeActivity.this, "Showing our location", Toast.LENGTH_SHORT).show();
+                latitude=lastlocation.getLatitude();
+                longitude = lastlocation.getLongitude();
         }
+
+    }
+
+    private void getLocations() {
 
     }
 
@@ -238,7 +299,32 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         googlePlaceUrl.append("&sensor=true");
         googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
 
-        //Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+        Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+
+        return googlePlaceUrl.toString();
+    }
+    private String getUrl2(double latitude , double longitude , String nearbyPlace) // Use GooglePlaces API functions to find URL
+    {
+
+        StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json?");
+        googlePlaceUrl.append("query="+nearbyPlace);
+        googlePlaceUrl.append("location="+latitude+","+longitude);
+        googlePlaceUrl.append("&radius="+"100");
+        googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
+
+        Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+
+        //return googlePlaceUrl.toString();
+       return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
+    }
+    private String getPlaceDetailsUrl(String placeID) // Use GooglePlaces API functions to find URL
+    {
+
+        StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/details/json?placeid=");
+        googlePlaceUrl.append(placeID);
+        googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
+
+        Log.d("getPlaceDetailsURl", "url = "+googlePlaceUrl.toString());
 
         return googlePlaceUrl.toString();
     }
@@ -296,9 +382,77 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private void setupBottomNavigationView(){
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext,bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mContext, this, bottomNavigationViewEx);
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
+    }
+
+     /*
+    ------------------------------------ Firebase ---------------------------------------------
+     */
+
+    /**
+     * checks to see if the @param 'user' is logged in
+     * @param user
+     */
+    private void checkCurrentUser(FirebaseUser user){
+        Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
+
+        if(user == null){
+            Intent intent = new Intent(mContext, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+    /**
+     * Setup the firebase auth object
+     */
+    private void setupFirebaseAuth(){
+        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                //check if the user is logged in
+                checkCurrentUser(user);
+
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+        //mViewPager.setCurrentItem(HOME_FRAGMENT);
+        checkCurrentUser(mAuth.getCurrentUser());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    public double getMyLatitude(){
+        return latitude;
+    }
+
+    public double getMyLongitude(){
+        return longitude;
     }
 }

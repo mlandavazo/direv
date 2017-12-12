@@ -17,10 +17,12 @@ public class DataParser {
     {
         HashMap<String, String> googlePlaceMap = new HashMap<>();
         String placeName = "--NA--";
-        String vicinity= "--NA--";
+        String address= "--NA--";
         String latitude= "";
         String longitude="";
         String reference="";
+        String id = "";
+        String placeID = "";
 
         Log.d("DataParser","jsonobject ="+googlePlaceJson.toString());
 
@@ -29,20 +31,30 @@ public class DataParser {
             if (!googlePlaceJson.isNull("name")) {
                 placeName = googlePlaceJson.getString("name");
             }
+
             if (!googlePlaceJson.isNull("vicinity")) {
-                vicinity = googlePlaceJson.getString("vicinity");
+                address = googlePlaceJson.getString("vicinity");
             }
 
+            if (!googlePlaceJson.isNull("id")) {
+                id = googlePlaceJson.getString("id");
+            }
+
+            if (!googlePlaceJson.isNull("place_id")) {
+                placeID = googlePlaceJson.getString("place_id");
+            }
             latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
             longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
 
             reference = googlePlaceJson.getString("reference");
 
             googlePlaceMap.put("place_name", placeName);
-            googlePlaceMap.put("vicinity", vicinity);
+            googlePlaceMap.put("vicinity", address);
             googlePlaceMap.put("lat", latitude);
             googlePlaceMap.put("lng", longitude);
             googlePlaceMap.put("reference", reference);
+            googlePlaceMap.put("id", id);
+            googlePlaceMap.put("place_id", placeID);
 
 
         }
@@ -51,7 +63,7 @@ public class DataParser {
         }
         return googlePlaceMap;
 
-    }
+    }//test comment
     private List<HashMap<String, String>> getPlaces(JSONArray jsonArray)
     {
         int count = jsonArray.length();
