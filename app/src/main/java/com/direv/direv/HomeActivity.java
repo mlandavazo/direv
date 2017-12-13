@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,7 +70,7 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private FirebaseMethods firebaseMethods;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
-
+private FeedNearbyFragment nearbyFrag;
     private GoogleMap mMap;
     private GoogleApiClient client;
     private LocationRequest locationRequest;
@@ -96,6 +97,9 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         setupFirebaseAuth();
         initImageLoader();
         setupBottomNavigationView();
+
+        nearbyFrag = new FeedNearbyFragment();
+        nearbyFrag.onCreate(savedInstanceState);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
@@ -189,8 +193,8 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     public void onClick(View v)
     {
         Object dataTransfer[] = new Object[3];
-        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
-
+        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();  //needed for buttons
+        GetNearbyPlacesData2 getNearbyPlacesData2 = new GetNearbyPlacesData2(); // needed for specific search
         switch(v.getId()) //This switch method checks which button is being pressed and then calls
         // the appropriate methods for the action
         {
@@ -236,9 +240,8 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url2;
                 dataTransfer[2]=mContext;
-                getNearbyPlacesData.execute(dataTransfer);
-
-break;
+                getNearbyPlacesData2.execute(dataTransfer); // we use nearbyplacesdata2 because its a different URL search
+                break;
             case R.id.B_restaurants: //send search  of restaurants into get URL
 
             mMap.clear();
@@ -291,7 +294,7 @@ break;
 
     private String getUrl(double latitude , double longitude , String nearbyPlace) // Use GooglePlaces API functions to find URL
     {
-
+        //append the URL appropriately
         StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         googlePlaceUrl.append("location="+latitude+","+longitude);
         googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
@@ -301,21 +304,21 @@ break;
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
-        return googlePlaceUrl.toString();
+        return googlePlaceUrl.toString(); //return URL
     }
     private String getUrl2(double latitude , double longitude , String nearbyPlace) // Use GooglePlaces API functions to find URL
     {
 
         StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json?");
         googlePlaceUrl.append("query="+nearbyPlace);
-        googlePlaceUrl.append("location="+latitude+","+longitude);
+        googlePlaceUrl.append("&location="+latitude+","+longitude);
         googlePlaceUrl.append("&radius="+"100");
         googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
-        //return googlePlaceUrl.toString();
-       return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
+        return googlePlaceUrl.toString();
+       //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
     }
     private String getPlaceDetailsUrl(String placeID) // Use GooglePlaces API functions to find URL
     {

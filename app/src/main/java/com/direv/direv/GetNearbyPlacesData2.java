@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
+class GetNearbyPlacesData2 extends AsyncTask<Object, String, String> {
     private static final String TAG = "GetNearbyPlaces";
     private String googlePlacesData;
     private GoogleMap mMap;
@@ -63,9 +63,9 @@ class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
     protected void onPostExecute(String s){
 
         List<HashMap<String, String>> nearbyPlaceList;
-        DataParser parser = new DataParser();
+        DataParser2 parser = new DataParser2();
         nearbyPlaceList = parser.parse(s);
-       // Log.d("nearbyplacesdata","called parse method");
+        // Log.d("nearbyplacesdata","called parse method");
         showNearbyPlaces(nearbyPlaceList);
     }
 
@@ -79,7 +79,7 @@ class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             HashMap<String, String> googlePlace = nearbyPlaceList.get(i);
 
             String placeName = googlePlace.get("place_name");
-            String address = googlePlace.get("vicinity");
+            String address = googlePlace.get("formatted_address");
             String id = googlePlace.get("id");
             String placeID = googlePlace.get("place_id");
             try {
@@ -87,7 +87,7 @@ class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
-           // long phone = Long.parseLong(googlePlace.get("international_phone_number"));
+            // long phone = Long.parseLong(googlePlace.get("international_phone_number"));
             double lat = Double.parseDouble(googlePlace.get("lat"));
             double lng = Double.parseDouble(googlePlace.get("lng"));
             String lati = googlePlace.get("lat");
