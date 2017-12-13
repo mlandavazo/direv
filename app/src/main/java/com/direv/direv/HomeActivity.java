@@ -20,8 +20,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.direv.direv.Utils.MainfeedListAdapter;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.direv.direv.Utils.BottomNavigationViewHelper;
@@ -70,6 +72,9 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private FirebaseMethods firebaseMethods;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    private TextView mMikes;
+    private TextView mSonic;
+    private TextView mPanda;
 private FeedNearbyFragment nearbyFrag;
     private GoogleMap mMap;
     private GoogleApiClient client;
@@ -97,7 +102,9 @@ private FeedNearbyFragment nearbyFrag;
         setupFirebaseAuth();
         initImageLoader();
         setupBottomNavigationView();
-
+        mMikes= (TextView) findViewById(R.id.mmikes);
+        mPanda= (TextView) findViewById(R.id.panda);
+        mSonic= (TextView) findViewById(R.id.sonic);
         nearbyFrag = new FeedNearbyFragment();
         nearbyFrag.onCreate(savedInstanceState);
 
@@ -192,6 +199,54 @@ private FeedNearbyFragment nearbyFrag;
 
     public void onClick(View v)
     {
+        mMikes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // need to do fragment transaction here
+                //ViewCommentsFragment fragment  = new ViewCommentsFragment();
+                Intent intent = new Intent(mContext, RestaurantActivity.class);
+                Bundle args = new Bundle();
+                intent.putExtra("restaurant_name","Mountain Mikes");
+                intent.putExtra("clean_rating", "3");
+                intent.putExtra("service_rating", "4");
+                intent.putExtra("food_rating", "5");
+                intent.putExtra("restaurant_key", "-L02UGz2ekkOeZipD2FR");
+
+                mContext.startActivity(intent, args);
+            }
+        });
+        mSonic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // need to do fragment transaction here
+                //ViewCommentsFragment fragment  = new ViewCommentsFragment();
+                Intent intent = new Intent(mContext, RestaurantActivity.class);
+                Bundle args = new Bundle();
+                intent.putExtra("restaurant_name","Sonic Drive-In");
+                intent.putExtra("clean_rating", "3");
+                intent.putExtra("service_rating", "3");
+                intent.putExtra("food_rating", "3");
+                intent.putExtra("restaurant_key", "-L01IYA7YeZ8MBmc-pdX");
+
+                mContext.startActivity(intent, args);
+            }
+        });
+        mSonic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // need to do fragment transaction here
+                //ViewCommentsFragment fragment  = new ViewCommentsFragment();
+                Intent intent = new Intent(mContext, RestaurantActivity.class);
+                Bundle args = new Bundle();
+                intent.putExtra("restaurant_name","Panda Express");
+                intent.putExtra("clean_rating", "2");
+                intent.putExtra("service_rating", "3");
+                intent.putExtra("food_rating", "3");
+                intent.putExtra("restaurant_key", "-L02UGz8mzOfwXaiq14u");
+
+                mContext.startActivity(intent, args);
+            }
+        });
         Object dataTransfer[] = new Object[3];
         GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();  //needed for buttons
         GetNearbyPlacesData2 getNearbyPlacesData2 = new GetNearbyPlacesData2(); // needed for specific search
@@ -279,6 +334,8 @@ private FeedNearbyFragment nearbyFrag;
                 getNearbyPlacesData.execute(dataTransfer);
 
                 break;
+
+
             case R.id.B_to:
                 Toast.makeText(HomeActivity.this, "Showing our location", Toast.LENGTH_SHORT).show();
                 latitude=lastlocation.getLatitude();
@@ -286,6 +343,7 @@ private FeedNearbyFragment nearbyFrag;
         }
 
     }
+
 
     private void getLocations() {
 
