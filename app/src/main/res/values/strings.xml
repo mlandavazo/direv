@@ -27,6 +27,16 @@
     <string name="password_short">Your password must be at least 6 characters long!</string>
     <string name="string_open_camera">Open Camera</string>
 
+    <string name="profile_fragment">Profile</string>
+    <string name="log_out_fragment">Log Out</string>
+
+    <string name="dbname_locations">locations</string>
+    <string name="dbname_restaurants">restaurants</string>
+    <string name="field_location">location</string>
+    <string name="field_latitude">latitude</string>
+    <string name="field_longitude">longitude</string>
+    <string name="field_reviews">reviews</string>
+
     <!--photo types-->
     <string name="new_photo">new_photo</string>
     <string name="profile_photo">profile_photo</string>
@@ -42,6 +52,7 @@
     <string name="photo">PHOTO</string>
     <string name="string_next">Continue</string>
     <string name="string_share">Post</string>
-
+    <string name="calling_activity">calling_activiry</string>
+    <string name="profile_activity">profile_activiry</string>
 
 </resources>

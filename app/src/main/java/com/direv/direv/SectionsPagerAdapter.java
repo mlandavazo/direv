@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by Malachi on 11/14/2017.
+ *  * credit for class goes to mitch.tabian: https://github.com/mitchtabian/Android-Instagram-Clone
  */
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {

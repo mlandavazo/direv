@@ -44,7 +44,6 @@ public class Photo implements Parcelable {
         this.service_rating = serviceRating;
         this.restaurant_name = restaurantName;
         this.restaurant_key = restaurant_key;
-
     }
 
     protected Photo(Parcel in) {
@@ -160,6 +159,7 @@ public class Photo implements Parcelable {
     public void setLikes(List<Like> likes) {
         this.likes = likes;
     }
+
 
     public double getFood_rating() {
         return food_rating;

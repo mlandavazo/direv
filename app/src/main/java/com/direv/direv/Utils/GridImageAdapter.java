@@ -14,6 +14,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+
+import com.direv.direv.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
@@ -39,6 +43,30 @@ public class GridImageAdapter extends ArrayAdapter<String>{
     }
 
     private static class ViewHolder{
+//=======
+//
+///**
+// * Created by Bizet on 12/11/2017.
+// */
+//
+//public class GridImageAdapter extends ArrayAdapter<String>{
+//    private Context mContext;
+//    private LayoutInflater mInflator;
+//    private int layoutResource;
+//    private String mAppend;
+//    private ArrayList<String> imgURLS;
+//
+//    public GridImageAdapter(Context context, int layoutResource, String append, ArrayList<String> imgURLS) {
+//        super(context, layoutResource, imgURLS);
+//        mInflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        mContext = context;
+//        this.layoutResource = layoutResource;
+//        mAppend = append;
+//        imgURLS = imgURLS;
+//    }
+//
+//    private static class ViewHolder {
+//>>>>>>> f11b8c3240e677da1f994a938857dab9f86526ea
         SquareImageView image;
         ProgressBar mProgressBar;
     }
@@ -46,12 +74,9 @@ public class GridImageAdapter extends ArrayAdapter<String>{
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        /*
-        Viewholder build pattern (Similar to recyclerview)
-         */
         final ViewHolder holder;
-        if (convertView == null) {
+
+        if(convertView == null) {
             convertView = mInflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder();
             holder.mProgressBar = (ProgressBar) convertView.findViewById(R.id.gridImageProgressbar);
@@ -97,6 +122,6 @@ public class GridImageAdapter extends ArrayAdapter<String>{
         });
 
         return convertView;
-        }
     }
+}
 

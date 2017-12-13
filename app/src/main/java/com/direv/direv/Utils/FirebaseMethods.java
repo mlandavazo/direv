@@ -541,32 +541,35 @@ public class FirebaseMethods {
             Log.d(TAG, "getUserSettings: snapshot key: " + ds.getKey());
             if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
                 Log.d(TAG, "getUserAccountSettings: users node datasnapshot: " + ds);
-
-                user.setFirstname(
-                        ds.child(userID)
-                                .getValue(User.class)
-                                .getFirstname()
-                );
-                user.setLastname(
-                        ds.child(userID)
-                                .getValue(User.class)
-                                .getLastname()
-                );
-                user.setUsername(
-                        ds.child(userID)
-                                .getValue(User.class)
-                                .getUsername()
-                );
-                user.setEmail(
-                        ds.child(userID)
-                                .getValue(User.class)
-                                .getEmail()
-                );
-                user.setUser_id(
-                        ds.child(userID)
-                                .getValue(User.class)
-                                .getUser_id()
-                );
+                try {
+                    user.setFirstname(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getFirstname()
+                    );
+                    user.setLastname(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getLastname()
+                    );
+                    user.setUsername(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getUsername()
+                    );
+                    user.setEmail(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getEmail()
+                    );
+                    user.setUser_id(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getUser_id()
+                    );
+                } catch (NullPointerException e) {
+                    Log.d(TAG, "getUserSettings: Caught Exception");
+                }
 
                 Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
             }

@@ -5,20 +5,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+//<<<<<<< HEAD
+import android.support.v4.view.ViewPager;
+//=======
+//>>>>>>> 7693056296c94ad410f00363a0552d87ebc8b1be
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+//<<<<<<< HEAD
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+//=======
 import android.widget.ProgressBar;
 import android.widget.TextView;
+//>>>>>>> 7693056296c94ad410f00363a0552d87ebc8b1be
 
 import com.direv.direv.Utils.BottomNavigationViewHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+import java.util.ArrayList;
+
 /**
  * Created by Malachi on 10/16/2017.
+ * credit for class goes to mitch.tabian: https://github.com/mitchtabian/Android-Instagram-Clone
  */
 
 public class SettingsActivity extends FragmentActivity {
@@ -32,37 +49,91 @@ public class SettingsActivity extends FragmentActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private ProgressBar mProgressBar;
-    private TextView tvSigningOut;
+
+    //    private TextView tvSigningOut;
+
+    private SectionsStatePagerAdapter pagerAdapter;
+    private ViewPager mViewPager;
+    private RelativeLayout mRelativeLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_accountsettings);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        tvSigningOut = (TextView) findViewById(R.id.tvLoggingOut);
+        Log.d(TAG, "onCreate: Started.");
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.relLayout1);
+
+//        tvSigningOut = (TextView) findViewById(R.id.tvLoggingOut);
 
         setupBottomNavigationView();
-
-        TextView tvLogout = (TextView) findViewById(R.id.logouttext);
+        setUpSettingsList();
+        setupFragments();
+        getIncomingIntent();
+//        TextView tvLogout = (TextView) findViewById(R.id.logouttext);
 
         mProgressBar.setVisibility(View.GONE);
-        tvSigningOut.setVisibility(View.GONE);
+//        tvSigningOut.setVisibility(View.GONE);
 
         setupFirebaseAuth();
 
-        tvLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: attempting to sign out.");
-                mProgressBar.setVisibility(View.VISIBLE);
-                tvSigningOut.setVisibility(View.VISIBLE);
+//        tvLogout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(TAG, "onClick: attempting to sign out.");
+//                mProgressBar.setVisibility(View.VISIBLE);
+//                tvSigningOut.setVisibility(View.VISIBLE);
 
-                mAuth.signOut();
-                finish();
+//                mAuth.signOut();
+//                finish();
+//            }
+//        });
+
+    }
+
+    private void getIncomingIntent() {
+        Intent intent = getIntent();
+
+        if(intent.hasExtra(getString(R.string.calling_activity))) {
+            Log.d(TAG, "getIncomingIntent: received incoming intent from " + getString(R.string.profile_activity));
+            setViewPager(pagerAdapter.getFragmentNumber(getString(R.string.edit_profile_fragment)));
+        }
+    }
+
+    private void setupFragments() {
+        pagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragments(new EditProfileFragment(), getString(R.string.edit_profile_fragment));
+        pagerAdapter.addFragments(new SignOutFragment(), getString(R.string.log_out_fragment));
+    }
+
+    private void setViewPager(int fragmentNumber) {
+        mRelativeLayout.setVisibility(View.GONE);
+        Log.d(TAG, "setViewPager: navigating to fragment #: " + fragmentNumber);
+        mViewPager.setAdapter(pagerAdapter);
+        mViewPager.setCurrentItem(fragmentNumber);
+    }
+
+    private void setUpSettingsList() {
+        Log.d(TAG, "setupSettingsList: initializing 'Account Settings' List.");
+        ListView listView = (ListView) findViewById(R.id.listViewAccountSettings);
+
+        ArrayList<String> options = new ArrayList<>();
+        options.add(getString(R.string.edit_profile_fragment));
+        options.add(getString(R.string.log_out_fragment));
+
+        ArrayAdapter adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, "onItemClick: navigating to fragment#: " + position);
+                setViewPager(position);
             }
         });
-
     }
 
     private void setupBottomNavigationView(){
