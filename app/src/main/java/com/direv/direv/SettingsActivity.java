@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+//<<<<<<< HEAD
 import android.support.v4.view.ViewPager;
+//=======
+//>>>>>>> 7693056296c94ad410f00363a0552d87ebc8b1be
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+//<<<<<<< HEAD
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -17,6 +21,10 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+//=======
+import android.widget.ProgressBar;
+import android.widget.TextView;
+//>>>>>>> 7693056296c94ad410f00363a0552d87ebc8b1be
 
 import com.direv.direv.Utils.BottomNavigationViewHelper;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,11 +49,13 @@ public class SettingsActivity extends FragmentActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private ProgressBar mProgressBar;
-//    private TextView tvSigningOut;
+
+    //    private TextView tvSigningOut;
 
     private SectionsStatePagerAdapter pagerAdapter;
     private ViewPager mViewPager;
     private RelativeLayout mRelativeLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +139,7 @@ public class SettingsActivity extends FragmentActivity {
     private void setupBottomNavigationView(){
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext,bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mContext, this, bottomNavigationViewEx);
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);

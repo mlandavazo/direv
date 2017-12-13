@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.direv.direv.DataClasses.Location;
+import com.direv.direv.DataClasses.Restaurant;
 import com.direv.direv.DataClasses.User;
 import com.direv.direv.DataClasses.UserAccountSettings;
 import com.direv.direv.DataClasses.UserSettings;
@@ -19,6 +21,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by Malachi on 11/24/2017.
@@ -370,6 +377,37 @@ public class FirebaseMethods {
 
     }
 
+    public void addNewLocationAndRestaurant (String id, String name, String address, String placeID, String lat, String lon){
+        Location location = new Location(lat, lon, address, id, name, placeID);
+        Log.d("testing location input", location.toString());
+        String newLocationKey = myRef.child(mContext.getString(R.string.dbname_locations)).push().getKey();
+        myRef.child(mContext.getString(R.string.dbname_locations))
+                .child(newLocationKey)
+                .setValue(location);
+
+        String newRestaurantKey = myRef.child(mContext.getString(R.string.dbname_restaurants)).push().getKey();
+        Restaurant restaurant = new Restaurant(location);
+        restaurant.setKey(newRestaurantKey);
+        myRef.child(mContext.getString(R.string.dbname_restaurants))
+                .child(newRestaurantKey)
+                .setValue(restaurant);
+    }
+    public void addNewRestaurant (String id, String name, String address, String placeID, String lat, String lon, String phone){
+        Location location = new Location(lat, lon, address, id, name, placeID);
+        Log.d("testing restaurant inp", location.toString());
+
+        String newRestaurantKey = myRef.child(mContext.getString(R.string.dbname_restaurants)).push().getKey();
+        Restaurant restaurant = new Restaurant(location);
+        myRef.child(mContext.getString(R.string.dbname_restaurants))
+                .child(newRestaurantKey)
+                .setValue(restaurant);
+    }
+
+    public String getTimestamp(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.CANADA);
+        sdf.setTimeZone(TimeZone.getTimeZone("Canada/Pacific"));
+        return sdf.format(new Date());
+    }
 
     /**
      * Retrieves the account settings for teh user currently logged in

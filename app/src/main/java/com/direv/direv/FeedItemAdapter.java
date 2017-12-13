@@ -43,7 +43,7 @@ static class ViewHolder{
             holder.reviewPicture = (ImageView) listItemView.findViewById(R.id.listreviewpicture);
             holder.reviewPicture.setImageResource(currentFeedItem.getReviewPicture());
             holder.timePosted = (TextView) listItemView.findViewById(R.id.listtimeposted);
-            holder.heart = (ImageView) listItemView.findViewById(R.id.listheart);
+            holder.heart = (ImageView) listItemView.findViewById(R.id.listheartblack);
             holder.heart.setImageResource(currentFeedItem.getHeartPic());
             holder.comment = (ImageView) listItemView.findViewById(R.id.listcomments);
             holder.comment.setImageResource(currentFeedItem.getCommentPic());

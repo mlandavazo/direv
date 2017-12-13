@@ -53,7 +53,17 @@ public class ProfileActivity extends AppCompatActivity {
 //
 //        tempGridSetup();
 
+//<<<<<<< HEAD
         init();
+//=======
+//    private void setupBottomNavigationView(){
+//        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
+//        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+//        BottomNavigationViewHelper.enableNavigation(mContext, this, bottomNavigationViewEx);
+//        Menu menu = bottomNavigationViewEx.getMenu();
+//        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+//        menuItem.setChecked(true);
+//>>>>>>> 7693056296c94ad410f00363a0552d87ebc8b1be
     }
 
     private void init() {
