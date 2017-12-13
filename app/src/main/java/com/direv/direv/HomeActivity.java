@@ -15,12 +15,15 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.direv.direv.Utils.MainfeedListAdapter;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.direv.direv.Utils.BottomNavigationViewHelper;
@@ -69,7 +72,10 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
     private FirebaseMethods firebaseMethods;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
-
+    private TextView mMikes;
+    private TextView mSonic;
+    private TextView mPanda;
+private FeedNearbyFragment nearbyFrag;
     private GoogleMap mMap;
     private GoogleApiClient client;
     private LocationRequest locationRequest;
@@ -96,6 +102,11 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
         setupFirebaseAuth();
         initImageLoader();
         setupBottomNavigationView();
+        mMikes= (TextView) findViewById(R.id.mmikes);
+        mPanda= (TextView) findViewById(R.id.panda);
+        mSonic= (TextView) findViewById(R.id.sonic);
+        nearbyFrag = new FeedNearbyFragment();
+        nearbyFrag.onCreate(savedInstanceState);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
@@ -188,9 +199,57 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
 
     public void onClick(View v)
     {
-        Object dataTransfer[] = new Object[3];
-        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
+        mMikes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // need to do fragment transaction here
+                //ViewCommentsFragment fragment  = new ViewCommentsFragment();
+                Intent intent = new Intent(mContext, RestaurantActivity.class);
+                Bundle args = new Bundle();
+                intent.putExtra("restaurant_name","Mountain Mikes");
+                intent.putExtra("clean_rating", "3");
+                intent.putExtra("service_rating", "4");
+                intent.putExtra("food_rating", "5");
+                intent.putExtra("restaurant_key", "-L02UGz2ekkOeZipD2FR");
 
+                mContext.startActivity(intent, args);
+            }
+        });
+        mSonic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // need to do fragment transaction here
+                //ViewCommentsFragment fragment  = new ViewCommentsFragment();
+                Intent intent = new Intent(mContext, RestaurantActivity.class);
+                Bundle args = new Bundle();
+                intent.putExtra("restaurant_name","Sonic Drive-In");
+                intent.putExtra("clean_rating", "3");
+                intent.putExtra("service_rating", "3");
+                intent.putExtra("food_rating", "3");
+                intent.putExtra("restaurant_key", "-L01IYA7YeZ8MBmc-pdX");
+
+                mContext.startActivity(intent, args);
+            }
+        });
+        mSonic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // need to do fragment transaction here
+                //ViewCommentsFragment fragment  = new ViewCommentsFragment();
+                Intent intent = new Intent(mContext, RestaurantActivity.class);
+                Bundle args = new Bundle();
+                intent.putExtra("restaurant_name","Panda Express");
+                intent.putExtra("clean_rating", "2");
+                intent.putExtra("service_rating", "3");
+                intent.putExtra("food_rating", "3");
+                intent.putExtra("restaurant_key", "-L02UGz8mzOfwXaiq14u");
+
+                mContext.startActivity(intent, args);
+            }
+        });
+        Object dataTransfer[] = new Object[3];
+        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();  //needed for buttons
+        GetNearbyPlacesData2 getNearbyPlacesData2 = new GetNearbyPlacesData2(); // needed for specific search
         switch(v.getId()) //This switch method checks which button is being pressed and then calls
         // the appropriate methods for the action
         {
@@ -236,9 +295,8 @@ public class HomeActivity extends FragmentActivity implements  OnMapReadyCallbac
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url2;
                 dataTransfer[2]=mContext;
-                getNearbyPlacesData.execute(dataTransfer);
-
-break;
+                getNearbyPlacesData2.execute(dataTransfer); // we use nearbyplacesdata2 because its a different URL search
+                break;
             case R.id.B_restaurants: //send search  of restaurants into get URL
 
             mMap.clear();
@@ -276,6 +334,8 @@ break;
                 getNearbyPlacesData.execute(dataTransfer);
 
                 break;
+
+
             case R.id.B_to:
                 Toast.makeText(HomeActivity.this, "Showing our location", Toast.LENGTH_SHORT).show();
                 latitude=lastlocation.getLatitude();
@@ -284,6 +344,7 @@ break;
 
     }
 
+
     private void getLocations() {
 
     }
@@ -291,7 +352,7 @@ break;
 
     private String getUrl(double latitude , double longitude , String nearbyPlace) // Use GooglePlaces API functions to find URL
     {
-
+        //append the URL appropriately
         StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         googlePlaceUrl.append("location="+latitude+","+longitude);
         googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
@@ -301,21 +362,29 @@ break;
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
-        return googlePlaceUrl.toString();
+        return googlePlaceUrl.toString(); //return URL
     }
     private String getUrl2(double latitude , double longitude , String nearbyPlace) // Use GooglePlaces API functions to find URL
     {
 
+        if(nearbyPlace.contains(" ")){
+
+            int index =0;
+            char[] myPlace= nearbyPlace.toCharArray();
+            index = nearbyPlace.indexOf(" ");
+            myPlace[index] = '_';
+            nearbyPlace = String.valueOf(myPlace);
+        }
         StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json?");
         googlePlaceUrl.append("query="+nearbyPlace);
-        googlePlaceUrl.append("location="+latitude+","+longitude);
+        googlePlaceUrl.append("&location="+latitude+","+longitude);
         googlePlaceUrl.append("&radius="+"100");
         googlePlaceUrl.append("&key="+"AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo");
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
-        //return googlePlaceUrl.toString();
-       return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
+        return googlePlaceUrl.toString();
+       //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
     }
     private String getPlaceDetailsUrl(String placeID) // Use GooglePlaces API functions to find URL
     {

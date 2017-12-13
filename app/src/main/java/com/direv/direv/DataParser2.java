@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class DataParser {
+public class DataParser2 {
 
     private HashMap<String, String> getPlace(JSONObject googlePlaceJson)
     {
@@ -32,8 +32,8 @@ public class DataParser {
                 placeName = googlePlaceJson.getString("name");
             }
 
-            if (!googlePlaceJson.isNull("vicinity")) {
-                address = googlePlaceJson.getString("vicinity");
+            if (!googlePlaceJson.isNull("formatted_address")) {
+                address = googlePlaceJson.getString("formatted_address");
             }
 
             if (!googlePlaceJson.isNull("id")) {
@@ -49,7 +49,7 @@ public class DataParser {
             reference = googlePlaceJson.getString("reference");
 
             googlePlaceMap.put("place_name", placeName);
-            googlePlaceMap.put("vicinity", address);
+            googlePlaceMap.put("formatted_address", address);
             googlePlaceMap.put("lat", latitude);
             googlePlaceMap.put("lng", longitude);
             googlePlaceMap.put("reference", reference);

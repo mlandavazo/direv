@@ -72,7 +72,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
         mReference = FirebaseDatabase.getInstance().getReference();
     }
 
-    static class ViewHolder{
+    public static class ViewHolder{
         ImageView postPic, profilePicture, ratingBackground;
         TextView profileName, restaurantName, timePosted, numComments, numLikes, rating, reviewText;
         ImageView heartRed, heartWhite, comment;

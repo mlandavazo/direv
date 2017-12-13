@@ -1,9 +1,11 @@
 package com.direv.direv;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -32,9 +34,9 @@ public class FeedActivity extends AppCompatActivity implements
     @Override
     public void onLoadMoreItems() {
         Log.d(TAG, "onLoadMoreItems: displaying more photos");
-        FeedNearbyFragment fragment = (FeedNearbyFragment)getSupportFragmentManager()
+        FeedNearbyFragment fragment = (FeedNearbyFragment) getSupportFragmentManager()
                 .findFragmentByTag("android:switcher:" + R.id.viewpager_container + ":" + mViewPager.getCurrentItem());
-        if(fragment != null){
+        if (fragment != null) {
             fragment.displayMorePhotos();
         }
     }
@@ -64,6 +66,7 @@ public class FeedActivity extends AppCompatActivity implements
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         setupBottomNavigationView();
+
 
 
         mFusedLocationClient.getLastLocation()

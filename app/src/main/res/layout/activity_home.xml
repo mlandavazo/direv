@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <!-- top toolbar -->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,16 +23,19 @@
         </RelativeLayout>
 
         <!-- content -->
-        <RelativeLayout
-            android:id="@+id/relLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relLayout1"
+        android:orientation="horizontal"
+        android:id="@+id/linlay"
+        android:weightSum="100">
+
 
 
             <EditText
+                android:layout_weight="80"
                 android:id="@+id/TF_location"
                 android:layout_width="280dp"
                 android:layout_height="45dp"
@@ -37,19 +44,12 @@
                 android:layout_alignParentStart="true"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Location" />
-            <EditText
-                android:id="@+id/TF_location2"
-                android:layout_width="280dp"
-                android:layout_height="45dp"
-                android:layout_above="@+id/TF_location"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Place" />
+                android:textColorHint="@color/grey"
+                android:hint="Location i.e. Turlock, merced, modesto" />
+
             <Button
-                android:id="@+id/B_search2"
+                android:layout_weight="20"
+                android:id="@+id/B_search"
                 android:layout_width="100dp"
                 android:layout_height="45dp"
                 android:layout_alignBaseline="@+id/TF_location2"
@@ -58,8 +58,30 @@
                 android:layout_alignParentRight="true"
                 android:onClick="onClick"
                 android:text="Search" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linlay"
+            android:orientation="horizontal"
+            android:id="@+id/linlay2"
+            android:weightSum="100">
+        <EditText
+           android:layout_weight="80"
+            android:id="@+id/TF_location2"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:ems="10"
+            android:inputType="textPersonName"
+
+            android:textColorHint="@color/grey"
+            android:hint="Place i.e. McDonald's, starbucks" />
             <Button
-                android:id="@+id/B_search"
+                android:layout_weight="20"
+                android:id="@+id/B_search2"
                 android:layout_width="100dp"
                 android:layout_height="45dp"
                 android:layout_alignBaseline="@+id/TF_location"
@@ -68,7 +90,7 @@
                 android:layout_alignParentRight="true"
                 android:onClick="onClick"
                 android:text="Search" />
-
+        </LinearLayout>
 
             <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -79,11 +101,20 @@
                 android:layout_height="240dp"
 
 
-                android:layout_above="@+id/B_cafe"
+                android:layout_below="@id/linlay2"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/map"
+            android:orientation="horizontal"
+            android:id="@+id/linlay3"
+            android:paddingLeft="15dp"
+            android:weightSum="150">
             <Button
+                android:layout_weight="50"
                 android:id="@+id/B_cafe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,20 +123,25 @@
                 android:layout_alignParentStart="true"
                 android:drawableTop="@drawable/cafe"
                 android:onClick="onClick"
+                android:background="@color/white"
                 android:text="Cafe" />
 
 
             <Button
+                android:layout_weight="50"
                 android:id="@+id/B_restaurants"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/B_to"
+
                 android:layout_centerHorizontal="true"
                 android:drawableTop="@drawable/restaurant"
                 android:onClick="onClick"
-                android:text="Restaurants" />
+                android:background="@color/white"
+                android:text="Restaurants"
+                />
 
             <Button
+                android:layout_weight="50"
                 android:id="@+id/B_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,24 +152,150 @@
                 android:layout_marginEnd="18dp"
                 android:layout_marginRight="18dp"
                 android:drawableTop="@drawable/bar"
+                android:background="@color/white"
                 android:onClick="onClick"
                 android:text="Bars" />
-
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linlay3">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/linlay3">
             <Button
                 android:id="@+id/B_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="56dp"
+                android:layout_marginLeft="150dp"
+android:background="@color/colorPrimaryDark"
+                android:layout_below="@id/linlay3"
                 android:onClick="onClick"
                 android:text="Home" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Featured"
+                android:text="Featured Restaurants"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:layout_below="@+id/B_to"
+                android:layout_marginLeft="40dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/LL1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/B_to"
+                android:layout_weight="100">
+                <TextView
+                    android:id="@+id/mmikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:text="Mountain Mike's"
+                    android:onClick="onClick"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"/>
+            <RatingBar
+                android:layout_weight="50"
+                android:id="@+id/AvgRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="4."
+                android:stepSize="0.5"
+                android:theme="@style/RatingBar" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/LL2"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/LL1"
+                android:layout_weight="100">
+                <TextView
+                    android:id="@+id/sonic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:text="Sonic Drive-In"
+                    android:onClick="onClick"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"/>
 
-        </RelativeLayout>
+            <RatingBar
+                android:id="@+id/AvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:isIndicator="true"
+                android:numStars="3"
+                android:rating="4."
+                android:stepSize="0.5"
+                android:theme="@style/RatingBar" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/LL3"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/LL2"
+                android:layout_weight="100">
+                <TextView
+                    android:id="@+id/panda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:text="Panda Express"
+                    android:onClick="onClick"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"/>
+            <RatingBar
+                android:id="@+id/ARating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:isIndicator="true"
+                android:numStars="3"
+                android:rating="4."
+                android:stepSize="0.5"
+                android:theme="@style/RatingBar" />
+            </LinearLayout>
+            <RatingBar
+                android:id="@+id/ARting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="4."
+                android:stepSize="0.5"
+                android:theme="@style/RatingBar" />
+
+        </LinearLayout>
+
+        </ScrollView>
+
 
         <!-- bottom tabs -->
         <include layout="@layout/layout_bottom_navigation_view"/>
-
-    </RelativeLayout>
+</RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout >

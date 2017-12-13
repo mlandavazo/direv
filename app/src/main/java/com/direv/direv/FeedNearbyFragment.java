@@ -96,7 +96,7 @@ public class FeedNearbyFragment extends Fragment {
                         //Log.d(TAG, "onDataChange: Coords are: " + mLatitude + " " + mLongitude);
                         double check = checkDistance(mLatitude, mLongitude, restaurant);
                         //Log.d(TAG, "onDataChange: Distance is: " + check);
-                        if (check <= 10000) {
+                        if (check <= 10000000) {
                             Log.d(TAG, "onDataChange: Found a nearby restaurant " +
                                     checkDistance(mLatitude, mLongitude, restaurant) + " meters away!");
                             if (ds.getKey() != null) {
