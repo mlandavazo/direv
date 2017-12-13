@@ -153,7 +153,7 @@ class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
 
                 if(!dataSnapshot.exists()){
                     //add the location
-                    //mFirebaseMethods.addNewLocationAndRestaurant(id, name, address, placeID, lat, lon);
+                    mFirebaseMethods.addNewLocationAndRestaurant(id, name, address, placeID, lat, lon);
 
                 }
                 else if (dataSnapshot.exists()){

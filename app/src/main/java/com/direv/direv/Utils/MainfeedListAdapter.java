@@ -398,7 +398,9 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
                                     .removeValue();
 
                             mHolder.heart.toggleLike();
-
+                            List <Like> likeList = getItem(mLastListLocation).getLikes();
+                            likeList.remove(0);
+                            getItem(mLastListLocation).setLikes(likeList);
                             //getLikesString(mHolder);
                         }
                         //case2: The user has not liked the photo
@@ -452,7 +454,10 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
                 .setValue(like);
 
         holder.heart.toggleLike();
-
+        List <Like> likeList = getItem(mLastListLocation).getLikes();
+        Like like2 = new Like();
+        likeList.add(like2);
+        getItem(mLastListLocation).setLikes(likeList);
         //getLikesString(holder);
     }
 

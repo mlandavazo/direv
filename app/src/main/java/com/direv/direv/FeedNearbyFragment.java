@@ -59,7 +59,7 @@ public class FeedNearbyFragment extends Fragment {
        // mLongitude = Double.parseDouble(getArguments().getString("longitude"));
 
         if (isAdded()) {
-            getFollowing();
+            getRestaurants();
 
         }
         else{
@@ -68,7 +68,7 @@ public class FeedNearbyFragment extends Fragment {
         return view;
     }
 
-    private void getFollowing(){
+    private void getRestaurants(){
         Log.d(TAG, "getRestaurants: searching for nearby restaurants");
         mLatitude = ((FeedActivity)getActivity()).getmLatitude();
         mLongitude = ((FeedActivity)getActivity()).getmLongitude();
@@ -273,16 +273,16 @@ public class FeedNearbyFragment extends Fragment {
                     mPaginatedPhotos.add(mPhotos.get(i));
                 }
 
-                //if(mListView.getAdapter() == null) {
+                if(mListView.getAdapter() == null) {
                     mAdapter = new MainfeedListAdapter(getActivity(), R.layout.list_item, mPaginatedPhotos);
                     mListView.setAdapter(mAdapter);
-               // }
-               // else{
+                }
+                else{
                     //mAdapter.updateData(myNewData);  //update adapter's data
-                    //mAdapter.notifyDataSetChanged();//notifies any View reflecting data to refresh
+                    mAdapter.notifyDataSetChanged();//notifies any View reflecting data to refresh
                     //mListView.setAdapter(mAdapter);
                     //mListView.invalidateViews();
-               // }
+                }
 
                 //mListView.setSelection(mAdapter.getListPosition());
                 //mListView.setAdapter(mAdapter);
