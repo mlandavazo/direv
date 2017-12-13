@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/relLayout1"
             android:id="@+id/relLayout2"
-            android:background="@drawable/grey_orange_bottom_border">
+            android:background="@color/colorPrimary">
 
             <LinearLayout
                 android:layout_width="match_parent"

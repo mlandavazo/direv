@@ -231,7 +231,7 @@ private FeedNearbyFragment nearbyFrag;
                 mContext.startActivity(intent, args);
             }
         });
-        mSonic.setOnClickListener(new View.OnClickListener() {
+        mPanda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // need to do fragment transaction here
