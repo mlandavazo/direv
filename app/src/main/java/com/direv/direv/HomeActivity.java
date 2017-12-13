@@ -309,6 +309,14 @@ private FeedNearbyFragment nearbyFrag;
     private String getUrl2(double latitude , double longitude , String nearbyPlace) // Use GooglePlaces API functions to find URL
     {
 
+        if(nearbyPlace.contains(" ")){
+
+            int index =0;
+            char[] myPlace= nearbyPlace.toCharArray();
+            index = nearbyPlace.indexOf(" ");
+            myPlace[index] = '_';
+            nearbyPlace = String.valueOf(myPlace);
+        }
         StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json?");
         googlePlaceUrl.append("query="+nearbyPlace);
         googlePlaceUrl.append("&location="+latitude+","+longitude);
