@@ -206,7 +206,7 @@ private FeedNearbyFragment nearbyFrag;
                 //ViewCommentsFragment fragment  = new ViewCommentsFragment();
                 Intent intent = new Intent(mContext, RestaurantActivity.class);
                 Bundle args = new Bundle();
-                intent.putExtra("restaurant_name","Mountain Mikes");
+                intent.putExtra("restaurant_name","Mountain Mike's");
                 intent.putExtra("clean_rating", "3");
                 intent.putExtra("service_rating", "4");
                 intent.putExtra("food_rating", "5");
@@ -231,7 +231,7 @@ private FeedNearbyFragment nearbyFrag;
                 mContext.startActivity(intent, args);
             }
         });
-        mSonic.setOnClickListener(new View.OnClickListener() {
+        mPanda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // need to do fragment transaction here
@@ -295,26 +295,30 @@ private FeedNearbyFragment nearbyFrag;
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url2;
                 dataTransfer[2]=mContext;
+
                 getNearbyPlacesData2.execute(dataTransfer); // we use nearbyplacesdata2 because its a different URL search
+                getNearbyPlacesData.execute(dataTransfer);
+
+
                 break;
             case R.id.B_restaurants: //send search  of restaurants into get URL
 
-            mMap.clear();
-            String restaurant = "restaurant";
-            String url = getUrl(latitude, longitude, restaurant);
-            dataTransfer[0] = mMap;
-            dataTransfer[1] = url;
-            dataTransfer[2] = mContext;
+                mMap.clear();
+                String restaurant = "restaurant";
+                String url = getUrl(latitude, longitude, restaurant);
+                dataTransfer[0] = mMap;
+                dataTransfer[1] = url;
+                dataTransfer[2] = mContext;
 
 
-            getNearbyPlacesData.execute(dataTransfer);
-            //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
-            break;
+                getNearbyPlacesData.execute(dataTransfer);
+                //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.B_bar: //send search  of bars into get URL
 
                 mMap.clear();
                 String bar = "bar";
-                 url = getUrl(latitude, longitude, bar);
+                url = getUrl(latitude, longitude, bar);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
                 dataTransfer[2] = mContext;
@@ -383,8 +387,13 @@ private FeedNearbyFragment nearbyFrag;
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
+
         return googlePlaceUrl.toString();
        //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
+
+        //return googlePlaceUrl.toString();
+        //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
+
     }
     private String getPlaceDetailsUrl(String placeID) // Use GooglePlaces API functions to find URL
     {
