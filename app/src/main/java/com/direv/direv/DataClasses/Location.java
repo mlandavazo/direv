@@ -28,7 +28,7 @@ public class Location {
     }
 
     public Location (JSONObject googlePlaceJson){
-       // HashMap<String, String> googlePlaceMap = new HashMap<>();
+        // HashMap<String, String> googlePlaceMap = new HashMap<>();
 
         String latitude= "";
         String longitude="";

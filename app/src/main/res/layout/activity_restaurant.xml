@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/container">
-
-    </FrameLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/relLayoutParent">
-
+        android:layout_height="match_parent">
 
         <!-- top toolbar -->
         <RelativeLayout
@@ -30,29 +18,20 @@
 
         </RelativeLayout>
 
-        <!-- Middle section (body) -->
+        <!-- content -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/relLayout2"
-            android:layout_below="@+id/relLayout1"
-            android:layout_above="@+id/bottom">
+            android:layout_below="@+id/relLayout1">
 
-            <include layout="@layout/layout_center_viewpager_restaurant"/>
-
+            <include layout="@layout/layout_center_view"/>
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/bottom"/>
-        <!-- bottom navigation -->
+        <!-- bottom tabs -->
         <include layout="@layout/layout_bottom_navigation_view"/>
-
 
     </RelativeLayout>
 
-
-</android.support.design.widget.CoordinatorLayout>
+</android.support.design.widget.CoordinatorLayout >

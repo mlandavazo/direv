@@ -8,8 +8,6 @@
     <string name="auth_failed">Failed to Authenticate</string>
     <string name="auth_success">Authentication Success</string>
 
-    <string name="view_comments_fragment">View Comments</string>
-
     <!-- Firebase database fields -->
     <string name="dbname_users">users</string>
     <string name="dbname_user_account_settings">user_account_settings</string>
@@ -27,48 +25,23 @@
     <string name="field_image_path">image_path</string>
     <string name="field_comments">comments</string>
     <string name="password_short">Your password must be at least 6 characters long!</string>
-    <string name="dbname_locations">locations</string>
-    <string name="dbname_restaurants">restaurants</string>
-    <string name="field_location">location</string>
-    <string name="field_latitude">latitude</string>
-    <string name="field_longitude">longitude</string>
-    <string name="field_reviews">reviews</string>
+    <string name="string_open_camera">Open Camera</string>
 
-    <!-- photo types -->
+    <!--photo types-->
     <string name="new_photo">new_photo</string>
     <string name="profile_photo">profile_photo</string>
 
-    <!-- Intent Extras -->
-    <string name="calling_activity">calling_activity</string>
+    <!--Intent-->
     <string name="selected_image">selected_image</string>
     <string name="selected_bitmap">selected_bitmap</string>
+
     <string name="return_to_fragment">return_to_fragment</string>
-    <string name="intent_user">intent_user</string>
+    <string name="edit_profile_fragment">edit_profile_fragment</string>
 
-    <!-- Bundle arg names -->
-    <string name="activity_number">activity_number</string>
-    <string name="bundle_photo">bundle_photo</string>
-    <string name="bundle_user_account_settings">bundle_user_account_settings</string>
-
-    <!-- activity names -->
-    <string name="profile_activity">Profile Activity</string>
-    <string name="search_activity">Search Activity</string>
-    <string name="feed_activity">Feed Activity</string>
-
-    <!-- strings -->
-    <string name="gallery">GALLERY</string>
+    <string name="gallery">Library</string>
     <string name="photo">PHOTO</string>
-    <string name="string_open_camera">Open Camera</string>
-    <string name="string_next">Next</string>
-    <string name="string_share">Share</string>
-    <string name="field_rest_name">restaurant_name</string>
-    <string name="field_phone">phone</string>
-    <string name="field_hours">hours</string>
-    <string name="dbname_restaurant_photos">restaurant_photos</string>
-    <string name="field_image_food_rating">food_rating</string>
-    <string name="field_image_clean_rating">clean_rating</string>
-    <string name="field_image_service_rating">service_rating</string>
-    <string name="field_rest_key">restaurant_key</string>
-    <string name="restaurant_activity">Restaurant Activity</string>
+    <string name="string_next">Continue</string>
+    <string name="string_share">Post</string>
+
 
 </resources>

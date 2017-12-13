@@ -53,34 +53,7 @@
         android:layout_marginTop="8dp"
         android:scaleType="centerCrop"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/heartLayout"
-        android:layout_below="@id/listreviewpicture"
-        android:layout_toRightOf="@id/listprofilepic">
-
-        <ImageView
-            android:id="@+id/listheartred"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_heart_red"
-            android:visibility="invisible"/>
-
-        <ImageView
-            android:id="@+id/listheartblack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_heart_white"
-            android:visibility="visible"/>
-
-    </RelativeLayout>
-
-   <!-- <ImageView
+    <ImageView
         android:id="@+id/listheart"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -88,7 +61,7 @@
         android:layout_below="@id/listreviewpicture"
         android:layout_toRightOf="@id/listprofilepic"
         android:layout_marginLeft="12dp"
-        android:layout_marginBottom="8dp"/>-->
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/listnumberoflikes"
@@ -98,7 +71,7 @@
         android:textSize="12sp"
         android:layout_marginRight="16dp"
         android:layout_below="@+id/listreviewpicture"
-        android:layout_toRightOf="@id/heartLayout"
+        android:layout_toRightOf="@id/listheart"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"/>
@@ -153,7 +126,7 @@
         android:layout_height="wrap_content"
         android:text="The food was great!"
         android:textSize="12sp"
-        android:layout_below="@+id/heartLayout"
+        android:layout_below="@+id/listheart"
         android:layout_toRightOf="@id/listprofilepic"
         android:layout_marginLeft="12dp"
         android:layout_marginBottom="8dp"/>

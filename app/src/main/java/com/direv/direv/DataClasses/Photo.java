@@ -14,6 +14,7 @@ public class Photo implements Parcelable {
     private String caption;
     private String date_created;
     private String image_path;
+    private String tags;
     private String photo_id;
     private String user_id;
     private List<Like> likes;
@@ -33,6 +34,7 @@ public class Photo implements Parcelable {
         this.caption = caption;
         this.date_created = date_created;
         this.image_path = image_path;
+        this.tags = tags;
         this.photo_id = photo_id;
         this.user_id = user_id;
         this.likes = likes;
@@ -49,6 +51,7 @@ public class Photo implements Parcelable {
         caption = in.readString();
         date_created = in.readString();
         image_path = in.readString();
+        tags = in.readString();
         photo_id = in.readString();
         user_id = in.readString();
         food_rating = in.readDouble();
@@ -63,6 +66,7 @@ public class Photo implements Parcelable {
         dest.writeString(caption);
         dest.writeString(date_created);
         dest.writeString(image_path);
+        dest.writeString(tags);
         dest.writeString(photo_id);
         dest.writeString(user_id);
         dest.writeDouble(food_rating);
@@ -123,6 +127,14 @@ public class Photo implements Parcelable {
 
     public void setImage_path(String image_path) {
         this.image_path = image_path;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public String getPhoto_id() {
@@ -211,6 +223,7 @@ public class Photo implements Parcelable {
                 "caption='" + caption + '\'' +
                 ", date_created='" + date_created + '\'' +
                 ", image_path='" + image_path + '\'' +
+                ", tags='" + tags + '\'' +
                 ", photo_id='" + photo_id + '\'' +
                 ", user_id='" + user_id + '\'' +
                 ", likes=" + likes +

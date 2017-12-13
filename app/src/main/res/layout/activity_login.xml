@@ -43,7 +43,7 @@
 
 </RelativeLayout>
         <EditText
-            android:id="@+id/editTextUsername"
+            android:id="@+id/editTextEmailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/emailicon"
@@ -51,10 +51,10 @@
             android:background="@drawable/userinfo"
             android:layout_margin="16dp"
             android:inputType="textEmailAddress"
-            android:hint="Username" />
+            android:hint="Email" />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/editTextPasswordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/passwordicon2"

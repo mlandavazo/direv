@@ -17,44 +17,32 @@ public class DataParser {
     {
         HashMap<String, String> googlePlaceMap = new HashMap<>();
         String placeName = "--NA--";
-        String address= "--NA--";
+        String vicinity= "--NA--";
         String latitude= "";
         String longitude="";
         String reference="";
-        String id = "";
-        String placeID = "";
 
         Log.d("DataParser","jsonobject ="+googlePlaceJson.toString());
 
 
         try {
-            if (!googlePlaceJson.isNull("name")) {
-                placeName = googlePlaceJson.getString("name");
-            }
-
+                if (!googlePlaceJson.isNull("name")) {
+                    placeName = googlePlaceJson.getString("name");
+                }
             if (!googlePlaceJson.isNull("vicinity")) {
-                address = googlePlaceJson.getString("vicinity");
+                vicinity = googlePlaceJson.getString("vicinity");
             }
 
-            if (!googlePlaceJson.isNull("id")) {
-                id = googlePlaceJson.getString("id");
-            }
-
-            if (!googlePlaceJson.isNull("place_id")) {
-                placeID = googlePlaceJson.getString("place_id");
-            }
             latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
             longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
 
             reference = googlePlaceJson.getString("reference");
 
             googlePlaceMap.put("place_name", placeName);
-            googlePlaceMap.put("vicinity", address);
+            googlePlaceMap.put("vicinity", vicinity);
             googlePlaceMap.put("lat", latitude);
             googlePlaceMap.put("lng", longitude);
             googlePlaceMap.put("reference", reference);
-            googlePlaceMap.put("id", id);
-            googlePlaceMap.put("place_id", placeID);
 
 
         }

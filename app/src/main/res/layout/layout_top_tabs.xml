@@ -2,22 +2,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
         android:layout_width = "match_parent"
-        android:layout_height = "48dp"
+        android:layout_height = "50dp"
         android:layout_alignParentTop="true">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/grey_orange_bottom_border"
-            >
+            android:background="@drawable/grey_orange_bottom_border">
 
             <android.support.design.widget.TabLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/tabs"
                 app:tabSelectedTextColor ="@color/black"
-                app:tabIndicatorColor="@color/black"
-                android:background="@color/colorPrimary">
+                app:tabIndicatorColor="@color/black">
 
             </android.support.design.widget.TabLayout>
 
