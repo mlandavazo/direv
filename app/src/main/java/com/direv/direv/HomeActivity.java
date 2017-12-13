@@ -206,7 +206,7 @@ private FeedNearbyFragment nearbyFrag;
                 //ViewCommentsFragment fragment  = new ViewCommentsFragment();
                 Intent intent = new Intent(mContext, RestaurantActivity.class);
                 Bundle args = new Bundle();
-                intent.putExtra("restaurant_name","Mountain Mikes");
+                intent.putExtra("restaurant_name","Mountain Mike's");
                 intent.putExtra("clean_rating", "3");
                 intent.putExtra("service_rating", "4");
                 intent.putExtra("food_rating", "5");
@@ -295,12 +295,11 @@ private FeedNearbyFragment nearbyFrag;
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url2;
                 dataTransfer[2]=mContext;
-<<<<<<< HEAD
+
                 getNearbyPlacesData2.execute(dataTransfer); // we use nearbyplacesdata2 because its a different URL search
-=======
                 getNearbyPlacesData.execute(dataTransfer);
 
->>>>>>> 46aa0e3847be0654ad35b07471a22fdb32288e84
+
                 break;
             case R.id.B_restaurants: //send search  of restaurants into get URL
 
@@ -388,13 +387,13 @@ private FeedNearbyFragment nearbyFrag;
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
-<<<<<<< HEAD
+
         return googlePlaceUrl.toString();
        //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
-=======
+
         //return googlePlaceUrl.toString();
-        return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
->>>>>>> 46aa0e3847be0654ad35b07471a22fdb32288e84
+        //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
+
     }
     private String getPlaceDetailsUrl(String placeID) // Use GooglePlaces API functions to find URL
     {
