@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-class GetNearbyPlacesData2 extends AsyncTask<Object, String, String> {
+class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
     private static final String TAG = "GetNearbyPlaces";
     private String googlePlacesData;
     private GoogleMap mMap;
@@ -63,7 +63,7 @@ class GetNearbyPlacesData2 extends AsyncTask<Object, String, String> {
     protected void onPostExecute(String s){
 
         List<HashMap<String, String>> nearbyPlaceList;
-        DataParser2 parser = new DataParser2();
+        DataParser parser = new DataParser();
         nearbyPlaceList = parser.parse(s);
         // Log.d("nearbyplacesdata","called parse method");
         showNearbyPlaces(nearbyPlaceList);
@@ -154,7 +154,7 @@ class GetNearbyPlacesData2 extends AsyncTask<Object, String, String> {
 
                 if(!dataSnapshot.exists()){
                     //add the location
-                    //mFirebaseMethods.addNewLocationAndRestaurant(id, name, address, placeID, lat, lon);
+                    mFirebaseMethods.addNewLocationAndRestaurant(id, name, address, placeID, lat, lon);
 
                 }
                 else if (dataSnapshot.exists()){

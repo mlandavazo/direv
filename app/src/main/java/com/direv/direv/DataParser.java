@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class DataParser2 {
+public class DataParser {
 
     private HashMap<String, String> getPlace(JSONObject googlePlaceJson)
     {

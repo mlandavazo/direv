@@ -30,7 +30,9 @@
         android:layout_below="@id/relLayout1"
         android:orientation="horizontal"
         android:id="@+id/linlay"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true" >>
 
 
 
@@ -161,29 +163,33 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linlay3">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@id/linlay3">
-            <Button
-                android:id="@+id/B_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="150dp"
-android:background="@color/colorPrimaryDark"
-                android:layout_below="@id/linlay3"
-                android:onClick="onClick"
-                android:text="Home" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Featured"
-                android:text="Featured Restaurants"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:layout_below="@+id/B_to"
-                android:layout_marginLeft="40dp" />
+            android:orientation="vertical">
+
+
+                <Button
+                    android:id="@+id/B_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="140dp"
+                    android:background="@color/colorPrimaryDark"
+
+                    android:onClick="onClick"
+                    android:text="Home" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Featured"
+                    android:text="Featured Restaurants"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+
+                   android:layout_marginLeft="35dp" />
+
+
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:id="@+id/LL1"
@@ -211,7 +217,7 @@ android:background="@color/colorPrimaryDark"
                 android:layout_gravity="center"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:rating="4."
+                android:rating="5"
                 android:stepSize="0.5"
                 android:theme="@style/RatingBar" />
             </LinearLayout>
@@ -241,8 +247,8 @@ android:background="@color/colorPrimaryDark"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:isIndicator="true"
-                android:numStars="3"
-                android:rating="4."
+                android:numStars="5"
+                android:rating="3"
                 android:stepSize="0.5"
                 android:theme="@style/RatingBar" />
             </LinearLayout>
@@ -271,8 +277,8 @@ android:background="@color/colorPrimaryDark"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:isIndicator="true"
-                android:numStars="3"
-                android:rating="4."
+                android:numStars="5"
+                android:rating="2"
                 android:stepSize="0.5"
                 android:theme="@style/RatingBar" />
             </LinearLayout>

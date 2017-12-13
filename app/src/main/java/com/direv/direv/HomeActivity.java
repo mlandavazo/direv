@@ -15,7 +15,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,9 +22,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.direv.direv.Utils.MainfeedListAdapter;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.Places;
 import com.direv.direv.Utils.BottomNavigationViewHelper;
 import com.direv.direv.Utils.FirebaseMethods;
 import com.direv.direv.Utils.UniversalImageLoader;
@@ -249,7 +245,7 @@ private FeedNearbyFragment nearbyFrag;
         });
         Object dataTransfer[] = new Object[3];
         GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();  //needed for buttons
-        GetNearbyPlacesData2 getNearbyPlacesData2 = new GetNearbyPlacesData2(); // needed for specific search
+        GetNearbyPlacesData getNearbyPlacesData2 = new GetNearbyPlacesData(); // needed for specific search
         switch(v.getId()) //This switch method checks which button is being pressed and then calls
         // the appropriate methods for the action
         {
