@@ -295,26 +295,31 @@ private FeedNearbyFragment nearbyFrag;
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url2;
                 dataTransfer[2]=mContext;
+<<<<<<< HEAD
                 getNearbyPlacesData2.execute(dataTransfer); // we use nearbyplacesdata2 because its a different URL search
+=======
+                getNearbyPlacesData.execute(dataTransfer);
+
+>>>>>>> 46aa0e3847be0654ad35b07471a22fdb32288e84
                 break;
             case R.id.B_restaurants: //send search  of restaurants into get URL
 
-            mMap.clear();
-            String restaurant = "restaurant";
-            String url = getUrl(latitude, longitude, restaurant);
-            dataTransfer[0] = mMap;
-            dataTransfer[1] = url;
-            dataTransfer[2] = mContext;
+                mMap.clear();
+                String restaurant = "restaurant";
+                String url = getUrl(latitude, longitude, restaurant);
+                dataTransfer[0] = mMap;
+                dataTransfer[1] = url;
+                dataTransfer[2] = mContext;
 
 
-            getNearbyPlacesData.execute(dataTransfer);
-            //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
-            break;
+                getNearbyPlacesData.execute(dataTransfer);
+                //Toast.makeText(HomeFragment.this, "Showing Nearby Restaurants", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.B_bar: //send search  of bars into get URL
 
                 mMap.clear();
                 String bar = "bar";
-                 url = getUrl(latitude, longitude, bar);
+                url = getUrl(latitude, longitude, bar);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
                 dataTransfer[2] = mContext;
@@ -383,8 +388,13 @@ private FeedNearbyFragment nearbyFrag;
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
+<<<<<<< HEAD
         return googlePlaceUrl.toString();
        //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
+=======
+        //return googlePlaceUrl.toString();
+        return "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+nearbyPlace+"&location="+latitude+","+longitude+"&radius=100&key=AIzaSyC142-1F7kvtpWFtCM3bXK6vfoq7xSPaqo";
+>>>>>>> 46aa0e3847be0654ad35b07471a22fdb32288e84
     }
     private String getPlaceDetailsUrl(String placeID) // Use GooglePlaces API functions to find URL
     {

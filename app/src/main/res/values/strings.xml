@@ -27,6 +27,11 @@
     <string name="field_image_path">image_path</string>
     <string name="field_comments">comments</string>
     <string name="password_short">Your password must be at least 6 characters long!</string>
+
+    <string name="edit_profile_fragment">Edit Profile</string>
+    <string name="profile_fragment">Profile</string>
+    <string name="log_out_fragment">Log Out</string>
+
     <string name="dbname_locations">locations</string>
     <string name="dbname_restaurants">restaurants</string>
     <string name="field_location">location</string>

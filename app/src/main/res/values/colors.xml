@@ -5,8 +5,9 @@
     <color name="colorAccent">#9E9E9E</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
-
+    <color name="orange">#FFA000</color>
     <color name="grey">#bfbfbf</color>
+    <color name="gray">#bfbfbf</color>
     <color name="link_blue">#4d94ff</color>
     <color name="darkRed">#cc0000</color>
 </resources>

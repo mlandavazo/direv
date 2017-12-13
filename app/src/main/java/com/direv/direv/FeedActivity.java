@@ -158,6 +158,4 @@ public class FeedActivity extends AppCompatActivity implements
         menuItem.setChecked(true);
     }
 
-
-
 }
